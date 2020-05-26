@@ -62,16 +62,14 @@ class CompositeDisposableClearDetector : Detector(), Detector.UastScanner {
 			Scope.JAVA_FILE_SCOPE
 		)
 
-		val ISSUE by lazy {
-			Issue.create(
-				id = "CompositeDisposableClear",
-				briefDescription = "CompositeDisposable not cleared",
-				explanation = "A CompositeDisposable is being used, but it is not being cleared. " +
-					"This can leave subscriptions active longer than the life of an Activity/Fragment",
-				category = Category.CORRECTNESS,
-				severity = Severity.ERROR,
-				implementation = IMPLEMENTATION
-			)
-		}
+		val ISSUE = Issue.create(
+			id = "CompositeDisposableClear",
+			briefDescription = "CompositeDisposable not cleared",
+			explanation = "A CompositeDisposable is being used, but it is not being cleared. " +
+				"This can leave subscriptions active longer than the life of an Activity/Fragment",
+			category = Category.CORRECTNESS,
+			severity = Severity.ERROR,
+			implementation = IMPLEMENTATION
+		)
 	}
 }

@@ -12,25 +12,26 @@ class DisposableClearDetector : Detector(), Detector.UastScanner {
 
 	override fun getApplicableUastTypes() = listOf(UClass::class.java)
 
-	override fun createUastHandler(context: JavaContext): UElementHandler? = object : UElementHandler() {
-		override fun visitClass(node: UClass) {
-			node.fields
-				.filter { "io.reactivex.disposables.Disposable" == it.type.canonicalText }
-				.toMutableList()
-				.let { disposables ->
-					node.accept(expressionVisitor(disposables))
+	override fun createUastHandler(context: JavaContext): UElementHandler? =
+		object : UElementHandler() {
+			override fun visitClass(node: UClass) {
+				node.fields
+					.filter { "io.reactivex.disposables.Disposable" == it.type.canonicalText }
+					.toMutableList()
+					.let { disposables ->
+						node.accept(expressionVisitor(disposables))
 
-					disposables.forEach {
-						context.report(
-							ISSUE,
-							it,
-							context.getNameLocation(it),
-							"Disposable.dispose() has not been called"
-						)
+						disposables.forEach {
+							context.report(
+								ISSUE,
+								it,
+								context.getNameLocation(it),
+								"Disposable.dispose() has not been called"
+							)
+						}
 					}
-				}
+			}
 		}
-	}
 
 	private fun expressionVisitor(disposables: MutableList<UField>) =
 		object : AbstractUastVisitor() {
@@ -58,15 +59,13 @@ class DisposableClearDetector : Detector(), Detector.UastScanner {
 			Scope.JAVA_FILE_SCOPE
 		)
 
-		val ISSUE by lazy {
-			Issue.create(
-				id = "DisposableNotDisposed",
-				briefDescription = "Disposable has not been disposed",
-				explanation = "A Disposable reference is being held, but it is not being disposed of.",
-				category = Category.CORRECTNESS,
-				severity = Severity.ERROR,
-				implementation = IMPLEMENTATION
-			)
-		}
+		val ISSUE = Issue.create(
+			id = "DisposableNotDisposed",
+			briefDescription = "Disposable has not been disposed",
+			explanation = "A Disposable reference is being held, but it is not being disposed of.",
+			category = Category.CORRECTNESS,
+			severity = Severity.ERROR,
+			implementation = IMPLEMENTATION
+		)
 	}
 }

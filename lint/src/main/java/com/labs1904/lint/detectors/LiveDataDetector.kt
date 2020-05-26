@@ -45,15 +45,13 @@ class LiveDataDetector : Detector(), Detector.UastScanner {
 			Scope.JAVA_FILE_SCOPE
 		)
 
-		val ISSUE by lazy {
-			Issue.create(
-				id = "LiveDataUsed",
-				briefDescription = "LiveData is being used instead of KotlinLiveData",
-				explanation = "KotlinLiveData should be used instead of LiveData for null safety",
-				category = Category.CORRECTNESS,
-				severity = Severity.ERROR,
-				implementation = IMPLEMENTATION
-			)
-		}
+		val ISSUE = Issue.create(
+			id = "LiveDataUsed",
+			briefDescription = "LiveData is being used instead of KotlinLiveData",
+			explanation = "KotlinLiveData should be used instead of LiveData for null safety",
+			category = Category.CORRECTNESS,
+			severity = Severity.ERROR,
+			implementation = IMPLEMENTATION
+		)
 	}
 }
