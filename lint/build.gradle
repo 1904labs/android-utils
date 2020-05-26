@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+dependencies {
+	//noinspection DifferentStdlibGradleVersion
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+	compileOnly "com.android.tools.lint:lint-api:$versions.lint"
+	compileOnly "com.android.tools.lint:lint-checks:$versions.lint"
+}
+
+jar {
+	manifest {
+		attributes('Lint-Registry-v2': 'com.labs1904.lint.LintIssueRegistry')
+	}
+}
