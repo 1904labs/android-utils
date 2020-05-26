@@ -1,3 +1,2 @@
 rootProject.name='android-utils'
-include ':app'
 include ':espresso-utils'
