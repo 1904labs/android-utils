@@ -62,7 +62,7 @@ class CompositeDisposableClearDetector : Detector(), Detector.UastScanner {
 			Scope.JAVA_FILE_SCOPE
 		)
 
-		val ISSUE: Issue by lazy {
+		val ISSUE by lazy {
 			Issue.create(
 				id = "CompositeDisposableClear",
 				briefDescription = "CompositeDisposable not cleared",
