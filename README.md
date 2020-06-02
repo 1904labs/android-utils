@@ -14,12 +14,13 @@ allprojects {
 
 ## Lint
 The `lint` module contains a few custom lint checks:
-- `CompositeDisposableClearDetector`
-- `DisposableClearDetector`
-- `LiveDataDetector`
-- `MutableLiveDataDetector`
-- `NavControllerDetector`
+- `CompositeDisposableClearDetector` - A `CompositeDisposable` reference is being held, but it is not being cleared.
+- `DisposableClearDetector` - A `Disposable` reference is being held, but it is not being disposed of.
+- `LiveDataDetector` - `KotlinLiveData` should be used instead of `LiveData` for null safety.
+- `MutableLiveDataDetector` - `KotlinMutableLiveData` should be used instead of `MutableLiveData` for null safety.
+- `NavControllerDetector` - A bug exists within `NavController.navigate()` that can sometimes cause the application to crash. `NavController.navigateSafe()` should be used instead.
 
+#### Dependency
 ```
 implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
