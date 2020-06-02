@@ -12,15 +12,3 @@ android {
 dependencies {
 	lintPublish project(':lint-checks')
 }
-
-afterEvaluate {
-	publishing {
-		publications {
-			release(MavenPublication) {
-				from components.release
-
-				version = '1.0.0'
-			}
-		}
-	}
-}
