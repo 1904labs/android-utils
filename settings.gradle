@@ -1,3 +1,4 @@
 rootProject.name='android-utils'
 include ':espresso-utils'
+include ':lint-checks'
 include ':lint'
