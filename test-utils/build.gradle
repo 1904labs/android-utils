@@ -26,6 +26,10 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
+    implementation("com.schibsted.spain:barista:$versions.barista") {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.core_ktx"
 
