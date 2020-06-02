@@ -19,8 +19,6 @@ afterEvaluate {
 			release(MavenPublication) {
 				from components.release
 
-				groupId = 'com.github.1904labs.android-utils'
-				artifactId = 'lint'
 				version = '1.0.0'
 			}
 		}
