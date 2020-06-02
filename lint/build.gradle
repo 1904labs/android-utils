@@ -1,8 +1,6 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
-
-sourceCompatibility = "7"
-targetCompatibility = "7"
+apply plugin: 'com.android.lint'
 
 dependencies {
 	//noinspection DifferentStdlibGradleVersion
@@ -12,8 +10,5 @@ dependencies {
 	compileOnly "com.android.tools.lint:lint-checks:$versions.lint"
 }
 
-jar {
-	manifest {
-		attributes('Lint-Registry-v2': 'com.labs1904.lint.LintIssueRegistry')
-	}
-}
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
