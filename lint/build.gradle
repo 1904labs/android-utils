@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
 	compileSdkVersion build_versions.compile_sdk
@@ -10,4 +11,18 @@ android {
 
 dependencies {
 	lintPublish project(':lint-checks')
+}
+
+afterEvaluate {
+	publishing {
+		publications {
+			release(MavenPublication) {
+				from components.release
+
+				groupId = 'com.github.1904labs.android-utils'
+				artifactId = 'lint'
+				version = '1.0.0'
+			}
+		}
+	}
 }
