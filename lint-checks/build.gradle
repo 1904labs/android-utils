@@ -1,9 +1,6 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
-
 dependencies {
 	//noinspection DifferentStdlibGradleVersion
 	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
