@@ -36,6 +36,8 @@ dependencies {
 
     implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 
+    implementation "com.squareup.rx.idler:rx3-idler:$versions.rxidler"
+
     testImplementation "junit:junit:$versions.junit"
 
     androidTestImplementation "androidx.test.ext:junit:$versions.junit_androidx"
