@@ -20,8 +20,4 @@ class AuthInterceptor(private val authTokenData: AuthTokenData<*>) : Interceptor
 		return chain.proceed(request)
 	}
 
-	companion object {
-		private const val AUTHORIZATION = "Authorization"
-		private const val BEARER = "Bearer"
-	}
 }
