@@ -7,6 +7,8 @@ versions.junit_androidx = "1.1.1"
 versions.kotlin = "1.3.72"
 versions.lint = "27.0.0" //this should be 'build_versions.gradle_plugin' + 23.0.0
 versions.barista = "3.5.0"
+versions.navigation_androidx = "2.2.2"
+versions.mockito_kotlin = "2.2.0"
 ext.versions = versions
 
 def build_versions = [:]
