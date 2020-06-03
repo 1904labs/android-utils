@@ -9,5 +9,7 @@ android {
 }
 
 dependencies {
+	implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
 
+	implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
 }
