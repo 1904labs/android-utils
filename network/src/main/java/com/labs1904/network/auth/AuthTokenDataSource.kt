@@ -3,7 +3,7 @@ package com.labs1904.network.auth
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
 
-interface AuthTokenData<T : Token> {
+interface AuthTokenDataSource<T : Token> {
 
 	fun currentToken(): Maybe<T>
 
