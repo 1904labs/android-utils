@@ -1,6 +1,6 @@
 package com.labs1904.network.auth
 
-interface Token {
+interface Tokens {
 	var accessToken: String
 	var refreshToken: String
 }
