@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 	compileSdkVersion build_versions.compile_sdk
@@ -9,7 +11,8 @@ android {
 }
 
 dependencies {
-	implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
+	implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
 	implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
 }
