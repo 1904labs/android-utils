@@ -1,17 +1,11 @@
 package com.labs1904.network.cookies
 
+import com.labs1904.network.cookies.cache.CookieCache
 import okhttp3.Cookie
 
-interface CookiePersistor {
-	fun loadAll(): List<Cookie>
-	fun saveAll(cookies: List<Cookie>)
-	fun removeAll(cookies: List<Cookie>)
-	fun clear()
-}
-
-class RoomCookiePersistor(
+class PersistentCookieCache(
 	private val cookieDataSource: CookieDataSource
-) : CookiePersistor {
+) : CookieCache {
 
 	override fun loadAll(): List<Cookie> =
 		cookieDataSource.load().map { it.toCookie() }
