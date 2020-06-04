@@ -1,6 +1,5 @@
 package com.labs1904.network.cookies
 
-import com.labs1904.network.cookies.cache.CookieCache
 import okhttp3.Cookie
 
 class PersistentCookieCache(

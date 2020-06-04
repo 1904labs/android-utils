@@ -1,6 +1,5 @@
-package com.labs1904.network.cookies.cache
+package com.labs1904.network.cookies
 
-import com.labs1904.network.cookies.IdentifiableCookie
 import okhttp3.Cookie
 
 class InMemoryCookieCache(

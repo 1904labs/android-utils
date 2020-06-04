@@ -1,4 +1,4 @@
-package com.labs1904.network.cookies.cache
+package com.labs1904.network.cookies
 
 import okhttp3.Cookie
 
