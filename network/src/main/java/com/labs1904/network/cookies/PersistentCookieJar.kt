@@ -21,7 +21,7 @@ class PersistentCookieJar(
 	override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
 		if (!loaded) fillCacheWithPersistedCookies()
 
-		cookieCache.addAll(cookies)
+		cookieCache.saveAll(cookies)
 		cookiePersistor.saveAll(
 			cookies.filter { it.persistent }
 		)
@@ -34,7 +34,7 @@ class PersistentCookieJar(
 		val expiredCookies = mutableListOf<Cookie>()
 		val validCookies = mutableListOf<Cookie>()
 
-		cookieCache.forEach { cookie ->
+		cookieCache.loadAll().forEach { cookie ->
 			if (cookie.isExpired()) expiredCookies.add(cookie)
 			else if (cookie.matches(url)) validCookies.add(cookie)
 		}
@@ -58,7 +58,7 @@ class PersistentCookieJar(
 	}
 
 	private fun fillCacheWithPersistedCookies() {
-		cookieCache.addAll(cookiePersistor.loadAll())
+		cookieCache.saveAll(cookiePersistor.loadAll())
 		loaded = true
 	}
 }

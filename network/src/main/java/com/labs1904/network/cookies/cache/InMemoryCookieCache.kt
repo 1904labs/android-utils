@@ -7,30 +7,23 @@ class InMemoryCookieCache(
 	private val cookies: MutableSet<IdentifiableCookie> = hashSetOf()
 ) : CookieCache {
 
-	override fun addAll(newCookies: List<Cookie>) =
-		newCookies
+	override fun loadAll(): List<Cookie> =
+		cookies.map { it.cookie }
+
+	override fun saveAll(cookies: List<Cookie>) =
+		cookies
 			.map { IdentifiableCookie(it) }
 			.forEach {
-				cookies.remove(it)
-				cookies.add(it)
+				this.cookies.remove(it)
+				this.cookies.add(it)
 			}
 
-	override fun removeAll(cookiesToRemove: List<Cookie>) =
-		cookiesToRemove
+	override fun removeAll(cookies: List<Cookie>) =
+		cookies
 			.map { IdentifiableCookie(it) }
-			.forEach { cookies.remove(it) }
+			.forEach { this.cookies.remove(it) }
 
 	override fun clear() {
 		cookies.clear()
-	}
-
-	override fun iterator(): Iterator<Cookie> = InMemoryCookieCacheIterator()
-
-	inner class InMemoryCookieCacheIterator : Iterator<Cookie> {
-		private val iterator = cookies.iterator()
-
-		override fun hasNext(): Boolean = iterator.hasNext()
-
-		override fun next(): Cookie = iterator.next().cookie
 	}
 }
