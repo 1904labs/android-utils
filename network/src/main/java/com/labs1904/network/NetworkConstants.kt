@@ -6,3 +6,8 @@ const val BEARER = "Bearer"
 const val STATUS_CODE_401 = 401
 
 const val INVALID_EXPIRES_AT = -1L
+
+const val COOKIES_TABLE = "cookies"
+const val COOKIE_KEY_NAME = "name"
+const val COOKIE_KEY_DOMAIN = "domain"
+const val COOKIE_KEY_PATH = "path"
