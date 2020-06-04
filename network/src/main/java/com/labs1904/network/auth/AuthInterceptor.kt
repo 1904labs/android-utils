@@ -1,5 +1,7 @@
 package com.labs1904.network.auth
 
+import com.labs1904.network.AUTHORIZATION
+import com.labs1904.network.BEARER
 import okhttp3.Interceptor
 import okhttp3.Response
 
