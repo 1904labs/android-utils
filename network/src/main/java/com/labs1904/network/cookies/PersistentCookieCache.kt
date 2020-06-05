@@ -1,21 +1,31 @@
 package com.labs1904.network.cookies
 
-import okhttp3.Cookie
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.Query
+import com.labs1904.network.COOKIES_TABLE
 
-class PersistentCookieCache(
-	private val cookieDataSource: CookieDataSource
-) : CookieCache {
+@Dao
+abstract class PersistentCookieCache : CookieDataSource {
 
-	override fun loadAll(): List<Cookie> =
-		cookieDataSource.load().map { it.toCookie() }
+	@Insert(onConflict = REPLACE)
+	abstract override fun insert(cookie: PersistableCookie)
 
-	override fun saveAll(cookies: List<Cookie>) =
-		cookies.map { PersistableCookie(it) }.toList().let { cookieDataSource.insert(it) }
+	@Insert(onConflict = REPLACE)
+	abstract override fun insertAll(cookies: List<PersistableCookie>)
 
-	override fun removeAll(cookies: List<Cookie>) =
-		cookies.map { PersistableCookie(it) }.toList().let { cookieDataSource.remove(it) }
+	@Delete
+	abstract override fun remove(cookie: PersistableCookie)
 
-	override fun clear() =
-		cookieDataSource.clear()
+	@Delete
+	abstract override fun removeAll(cookies: List<PersistableCookie>)
+
+	@Query("SELECT * from $COOKIES_TABLE")
+	abstract override fun load(): List<PersistableCookie>
+
+	@Query("DELETE from $COOKIES_TABLE")
+	abstract override fun clear()
 
 }
