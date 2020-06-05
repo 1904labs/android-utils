@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.labs1904.test_utils" />
+	package="com.labs1904.test_utils">
+
+	<application>
+		<activity android:name=".TestActivity"/>
+	</application>
+
+</manifest>

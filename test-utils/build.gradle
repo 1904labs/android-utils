@@ -32,6 +32,11 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.navigation:navigation-runtime:$versions.navigation_androidx"
+
+    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+
+    implementation "com.squareup.rx.idler:rx3-idler:$versions.rxidler"
 
     testImplementation "junit:junit:$versions.junit"
 
