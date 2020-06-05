@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 class TestActivity : AppCompatActivity() {
 
     companion object {
-        fun createIntent(targetContext: Context) : Intent = Intent(targetContext, TestActivity::class.java)
+        fun createIntent(targetContext: Context): Intent =
+            Intent(targetContext, TestActivity::class.java)
     }
 }

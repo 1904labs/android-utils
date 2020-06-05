@@ -10,6 +10,8 @@ versions.barista = "3.5.0"
 versions.navigation_androidx = "2.2.2"
 versions.mockito_kotlin = "2.2.0"
 versions.rxidler = "0.11.0"
+versions.material = "1.1.0"
+versions.swipe_refresh_layout = "1.0.0"
 ext.versions = versions
 
 def build_versions = [:]
