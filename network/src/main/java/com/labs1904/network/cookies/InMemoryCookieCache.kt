@@ -1,28 +1,32 @@
 package com.labs1904.network.cookies
 
-import okhttp3.Cookie
-
 class InMemoryCookieCache(
 	private val cookies: MutableSet<PersistableCookie> = hashSetOf()
-) : CookieCache {
+) : CookieDataSource {
 
-	override fun loadAll(): List<Cookie> =
-		cookies.map { it.toCookie() }
+	override fun insert(cookie: PersistableCookie) {
+		cookies.remove(cookie)
+		cookies.add(cookie)
+	}
 
-	override fun saveAll(cookies: List<Cookie>) =
-		cookies
-			.map { PersistableCookie(it) }
-			.forEach {
-				this.cookies.remove(it)
-				this.cookies.add(it)
-			}
+	override fun insertAll(cookies: List<PersistableCookie>) {
+		this.cookies.removeAll(cookies)
+		this.cookies.addAll(cookies)
+	}
 
-	override fun removeAll(cookies: List<Cookie>) =
-		cookies
-			.map { PersistableCookie(it) }
-			.forEach { this.cookies.remove(it) }
+	override fun remove(cookie: PersistableCookie) {
+		this.cookies.remove(cookie)
+	}
+
+	override fun removeAll(cookies: List<PersistableCookie>) {
+		this.cookies.removeAll(cookies)
+	}
+
+	override fun load(): List<PersistableCookie> =
+		this.cookies.toList()
 
 	override fun clear() {
-		cookies.clear()
+		this.cookies.clear()
 	}
+
 }
