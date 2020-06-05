@@ -40,13 +40,19 @@ data class PersistableCookie(
 		cookie ?: Cookie.Builder().apply {
 			name(name)
 			value(value)
-			if (expiresAt != INVALID_EXPIRES_AT) expiresAt(expiresAt)
+			if (isPersistent()) expiresAt(expiresAt)
 			domain(domain)
 			path(path)
 			if (secure) secure()
 			if (httpOnly) httpOnly()
 			if (hostOnly) hostOnlyDomain(domain)
-		}.build()
+		}.build().also { cookie = it }
+
+	fun isPersistent(): Boolean =
+		expiresAt != INVALID_EXPIRES_AT
+
+	fun isExpired(): Boolean =
+		expiresAt < System.currentTimeMillis()
 
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true

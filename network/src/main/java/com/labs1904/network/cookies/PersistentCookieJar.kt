@@ -10,8 +10,8 @@ interface MutableCookieJar : CookieJar {
 }
 
 class PersistentCookieJar(
-	private val sessionCookieCache: CookieCache,
-	private val persistentCookieCache: CookieCache
+	private val sessionCookieCache: CookieDataSource,
+	private val persistentCookieCache: CookieDataSource
 ) : MutableCookieJar {
 
 	private var loaded = false
@@ -20,28 +20,28 @@ class PersistentCookieJar(
 	override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
 		if (!loaded) fillCacheWithPersistedCookies()
 
-		sessionCookieCache.saveAll(cookies)
-		persistentCookieCache.saveAll(
-			cookies.filter { it.persistent }
-		)
+		cookies.map { PersistableCookie(it) }.forEach {
+			sessionCookieCache.insert(it)
+			if (it.isPersistent()) persistentCookieCache.insert(it)
+		}
 	}
 
 	@Synchronized
 	override fun loadForRequest(url: HttpUrl): List<Cookie> {
 		if (!loaded) fillCacheWithPersistedCookies()
 
-		val expiredCookies = mutableListOf<Cookie>()
-		val validCookies = mutableListOf<Cookie>()
+		val expired = mutableListOf<PersistableCookie>()
+		val valid = mutableListOf<PersistableCookie>()
 
-		sessionCookieCache.loadAll().forEach { cookie ->
-			if (cookie.isExpired()) expiredCookies.add(cookie)
-			else if (cookie.matches(url)) validCookies.add(cookie)
+		sessionCookieCache.load().forEach {
+			if (it.isExpired()) expired.add(it)
+			else if (it.toCookie().matches(url)) valid.add(it)
 		}
 
-		sessionCookieCache.removeAll(expiredCookies)
-		persistentCookieCache.removeAll(expiredCookies)
+		sessionCookieCache.removeAll(expired)
+		persistentCookieCache.removeAll(expired)
 
-		return validCookies
+		return valid.map { it.toCookie() }
 	}
 
 	@Synchronized
@@ -57,10 +57,7 @@ class PersistentCookieJar(
 	}
 
 	private fun fillCacheWithPersistedCookies() {
-		sessionCookieCache.saveAll(persistentCookieCache.loadAll())
+		sessionCookieCache.insertAll(persistentCookieCache.load())
 		loaded = true
 	}
 }
-
-fun Cookie.isExpired(): Boolean =
-	expiresAt < System.currentTimeMillis()
