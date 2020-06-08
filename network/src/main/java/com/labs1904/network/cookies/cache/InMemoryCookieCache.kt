@@ -1,7 +1,6 @@
 package com.labs1904.network.cookies.cache
 
 import com.labs1904.network.cookies.PersistableCookie
-import com.labs1904.network.cookies.SessionCookieCache
 
 class InMemoryCookieCache(
 	private val cookies: MutableSet<PersistableCookie> = hashSetOf()

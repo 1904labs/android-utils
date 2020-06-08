@@ -1,5 +1,7 @@
 package com.labs1904.network.cookies
 
+import com.labs1904.network.cookies.cache.PersistentCookieCache
+import com.labs1904.network.cookies.cache.SessionCookieCache
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl

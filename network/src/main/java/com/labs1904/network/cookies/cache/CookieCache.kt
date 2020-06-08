@@ -1,4 +1,6 @@
-package com.labs1904.network.cookies
+package com.labs1904.network.cookies.cache
+
+import com.labs1904.network.cookies.PersistableCookie
 
 interface CookieCache {
 	fun insert(cookie: PersistableCookie)
