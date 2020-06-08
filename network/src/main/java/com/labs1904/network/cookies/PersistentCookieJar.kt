@@ -10,8 +10,8 @@ interface MutableCookieJar : CookieJar {
 }
 
 class PersistentCookieJar(
-	private val sessionCookieCache: CookieDataSource,
-	private val persistentCookieCache: CookieDataSource
+	private val sessionCookieCache: SessionCookieCache,
+	private val persistentCookieCache: PersistentCookieCache
 ) : MutableCookieJar {
 
 	private var loaded = false

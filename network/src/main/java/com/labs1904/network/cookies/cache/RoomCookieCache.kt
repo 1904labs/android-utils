@@ -6,11 +6,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.labs1904.network.COOKIES_TABLE
-import com.labs1904.network.cookies.CookieDataSource
 import com.labs1904.network.cookies.PersistableCookie
+import com.labs1904.network.cookies.PersistentCookieCache
 
 @Dao
-abstract class PersistentCookieCache : CookieDataSource {
+abstract class RoomCookieCache : PersistentCookieCache {
 
 	@Insert(onConflict = REPLACE)
 	abstract override fun insert(cookie: PersistableCookie)

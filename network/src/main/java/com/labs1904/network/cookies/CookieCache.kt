@@ -1,6 +1,6 @@
 package com.labs1904.network.cookies
 
-interface CookieDataSource {
+interface CookieCache {
 	fun insert(cookie: PersistableCookie)
 	fun insertAll(cookies: List<PersistableCookie>)
 	fun remove(cookie: PersistableCookie)
@@ -8,3 +8,7 @@ interface CookieDataSource {
 	fun load(): List<PersistableCookie>
 	fun clear()
 }
+
+interface SessionCookieCache : CookieCache
+
+interface PersistentCookieCache : CookieCache

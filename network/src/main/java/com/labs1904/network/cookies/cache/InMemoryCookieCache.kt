@@ -1,11 +1,11 @@
 package com.labs1904.network.cookies.cache
 
-import com.labs1904.network.cookies.CookieDataSource
 import com.labs1904.network.cookies.PersistableCookie
+import com.labs1904.network.cookies.SessionCookieCache
 
-class SessionCookieCache(
+class InMemoryCookieCache(
 	private val cookies: MutableSet<PersistableCookie> = hashSetOf()
-) : CookieDataSource {
+) : SessionCookieCache {
 
 	override fun insert(cookie: PersistableCookie) {
 		cookies.remove(cookie)
