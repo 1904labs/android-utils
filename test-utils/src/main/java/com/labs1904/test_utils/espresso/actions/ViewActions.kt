@@ -9,6 +9,11 @@ import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
+/**
+ * Clicks a view that may not fully be visible without throwing an exception.
+ *
+ * @param  matcher Matcher used to target the desired view to be clicked.
+ */
 fun clickOffScreenView(matcher: Matcher<View>) {
 
     onView(matcher).perform(object : ViewAction {

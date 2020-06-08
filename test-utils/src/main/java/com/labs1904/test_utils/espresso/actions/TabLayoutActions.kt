@@ -11,6 +11,12 @@ import com.google.android.material.tabs.TabLayout
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
+/**
+ * Selects the tab at a certain index in a TabLayout.
+ *
+ * @param  viewId Id of the targeted view.
+ * @param  position Index of the tab you are trying to select.
+ */
 fun selectTabAtPosition(@IdRes viewId: Int, position: Int) {
 
     onView(withId(viewId)).perform(object : ViewAction {
