@@ -5,6 +5,11 @@ import com.google.android.material.tabs.TabLayout
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 
+/**
+ * Matcher that checks that the specified tab is currently selected.
+ *
+ * @param  position Index of the tab you expect to currently be selected.
+ */
 fun withTabSelected(position: Int) = object : TypeSafeMatcher<View>() {
 
     override fun describeTo(description: Description?) {
