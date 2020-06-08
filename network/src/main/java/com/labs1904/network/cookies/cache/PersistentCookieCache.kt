@@ -10,8 +10,7 @@ import com.labs1904.network.cookies.CookieDataSource
 import com.labs1904.network.cookies.PersistableCookie
 
 @Dao
-abstract class PersistentCookieCache :
-	CookieDataSource {
+abstract class PersistentCookieCache : CookieDataSource {
 
 	@Insert(onConflict = REPLACE)
 	abstract override fun insert(cookie: PersistableCookie)
