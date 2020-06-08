@@ -20,7 +20,7 @@ class PersistentCookieJar(
 
 	@Synchronized
 	override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
-		if (!loaded) fillCacheWithPersistedCookies()
+		if (!loaded) loadPersistedCookiesIntoMemory()
 
 		cookies.map { PersistableCookie(it) }.forEach {
 			sessionCookieCache.insert(it)
@@ -30,7 +30,7 @@ class PersistentCookieJar(
 
 	@Synchronized
 	override fun loadForRequest(url: HttpUrl): List<Cookie> {
-		if (!loaded) fillCacheWithPersistedCookies()
+		if (!loaded) loadPersistedCookiesIntoMemory()
 
 		val expired = mutableListOf<PersistableCookie>()
 		val valid = mutableListOf<PersistableCookie>()
@@ -55,10 +55,10 @@ class PersistentCookieJar(
 	@Synchronized
 	override fun clearSession() {
 		sessionCookieCache.clear()
-		fillCacheWithPersistedCookies()
+		loadPersistedCookiesIntoMemory()
 	}
 
-	private fun fillCacheWithPersistedCookies() {
+	private fun loadPersistedCookiesIntoMemory() {
 		sessionCookieCache.insertAll(persistentCookieCache.load())
 		loaded = true
 	}
