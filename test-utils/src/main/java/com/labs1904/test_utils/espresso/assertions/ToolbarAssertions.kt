@@ -10,6 +10,11 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.instanceOf
 
+/**
+ * Asserts that the specified text is currently showing within the Toolbar.
+ *
+ * @param  stringId String resource id of the text you expect to be showing.
+ */
 fun assertToolbarTitle(@StringRes stringId: Int) {
     onView(
         allOf(
@@ -19,6 +24,11 @@ fun assertToolbarTitle(@StringRes stringId: Int) {
     ).check(matches(withText(stringId)))
 }
 
+/**
+ * Asserts that the specified text is currently showing within the Toolbar.
+ *
+ * @param  expectedText Text you expect to be showing.
+ */
 fun assertToolbarTitle(expectedText: String) {
     onView(
         allOf(

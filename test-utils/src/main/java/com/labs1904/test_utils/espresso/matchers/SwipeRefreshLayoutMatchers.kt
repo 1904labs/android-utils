@@ -6,6 +6,9 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
+/**
+ * Matcher that checks that the SwipeRefreshLayout is currently refreshing.
+ */
 fun isRefreshing(): Matcher<View> =
     object : BoundedMatcher<View, SwipeRefreshLayout>(SwipeRefreshLayout::class.java) {
 
