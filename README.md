@@ -31,7 +31,7 @@ implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
 
 ## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
-**The `test-utils` module contains the following to help make testing quicker and more standardized:**
+The `test-utils` module contains the following to help make testing quicker and more standardized:
 - Utils to generate random non-null primitive data types:
     - ```randomInt()``` - Generates a random integer and allows you to specify a range. Default range is any positive integer.
     - ```randomDouble()``` - Generates a random double and allows you to specify a range. Default range is any positive double.
@@ -47,7 +47,7 @@ testing more efficient, concise, and readable. This library utilizes the [Barist
 This is meant to be an extension of that library.**
 - Custom extension functions built around ```ActivityTestRule```:
     - ```rotateLandscape()``` - Easily rotate the screen into the landscape orientation.
-    - ```rotateportrait()``` - Easily rotate the screen into the portrait orientation.
+    - ```rotatePortrait()``` - Easily rotate the screen into the portrait orientation.
     - ```launchFragment()``` - Easily launch a fragment into a dummy activity to test it in isolation.
 - ```replaceNavControllerWithMock()``` - Extension function built around ```Fragment``` to easily swap 
 the ```NavController``` with a mock.
