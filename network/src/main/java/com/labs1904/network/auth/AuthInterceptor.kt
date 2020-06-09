@@ -15,7 +15,7 @@ class AuthInterceptor(private val tokenData: TokenDataSource<*>) : Interceptor {
 	override fun intercept(chain: Interceptor.Chain): Response {
 		var request = chain.request()
 
-		if (request.headers[AUTHORIZATION] == null) {
+		if (request.header(AUTHORIZATION) == null) {
 			tokenData.currentTokens().blockingGet()?.let {
 				request = request.newBuilder().addHeader(
 					AUTHORIZATION,
