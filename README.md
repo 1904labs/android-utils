@@ -43,8 +43,8 @@ implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
     - ```randomBoolean()``` - Generates a random boolean.
 - Custom [Espresso](https://developer.android.com/training/testing/espresso) actions, assertions, and matchers to make
 testing more efficient, concise, and readable. This library utilizes the [Barista](https://github.com/AdevintaSpain/Barista) library.
-Please make sure that any custom Espresso actions, assertions, and matchers you add to this library don't already exist within Barista.
-This is meant to be an extension of that library.
+**Please make sure that any custom Espresso actions, assertions, and matchers you add to this library don't already exist within Barista.
+This is meant to be an extension of that library.**
 - Custom extension functions built around ```ActivityTestRule```:
     - ```rotateLandscape()``` - Easily rotate the screen into the landscape orientation.
     - ```rotateportrait()``` - Easily rotate the screen into the portrait orientation.
