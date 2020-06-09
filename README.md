@@ -30,7 +30,7 @@ To include these lint checks in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
 
-## Network
+## Network [![](https://img.shields.io/badge/Jitpack-network--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `network` module contains two network interceptors relating to API authentication, as well as a [RFC-6265](https://tools.ietf.org/html/rfc6265#section-5.3) compliant cookie implementation:
 - `AuthInterceptor`
   - An OkHttp [Interceptor](https://square.github.io/okhttp/3.x/okhttp/okhttp3/Interceptor.html) that retrieves an authentication token using `TokenDataSource.currentTokens()`, and attaches it to outgoing requests using the `Authorization` header.
@@ -40,7 +40,7 @@ The `network` module contains two network interceptors relating to API authentic
   - An implementation of OkHttp's [CookieJar](https://square.github.io/okhttp/3.x/okhttp/okhttp3/CookieJar.html). This implementation stores session and persistent cookies using the `SessionCookieCache` and `PersistentCookieCache` interfaces. An implementation of each are included:
     - `InMemoryCookieCache`: Stores session cookies using a `HashSet`
     - `RoomCookieCache`: A [Dao](https://developer.android.com/reference/androidx/room/Dao) for the AndroidX Room library that stores persistent cookies in a SQLite database
-    
+
 To include these components in your project, add the following dependency:
 ```
 implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
