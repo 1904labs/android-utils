@@ -1,13 +1,13 @@
 package com.labs1904.network.cookies.cache
 
-import com.labs1904.network.cookies.PersistableCookie
+import com.labs1904.network.cookies.SerializableCookie
 
 interface CookieCache {
-	fun insert(cookie: PersistableCookie)
-	fun insertAll(cookies: List<PersistableCookie>)
-	fun remove(cookie: PersistableCookie)
-	fun removeAll(cookies: List<PersistableCookie>)
-	fun load(): List<PersistableCookie>
+	fun insert(cookie: SerializableCookie)
+	fun insertAll(cookies: List<SerializableCookie>)
+	fun remove(cookie: SerializableCookie)
+	fun removeAll(cookies: List<SerializableCookie>)
+	fun load(): List<SerializableCookie>
 	fun clear()
 }
 
