@@ -31,7 +31,7 @@ implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
 
 ## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
-The `test-utils` module contains the following to help make testing quicker and more standardize:
+**The `test-utils` module contains the following to help make testing quicker and more standardized:**
 - Utils to generate random non-null primitive data types:
     - ```randomInt()``` - Generates a random integer and allows you to specify a range. Default range is any positive integer.
     - ```randomDouble()``` - Generates a random double and allows you to specify a range. Default range is any positive double.
