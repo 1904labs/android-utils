@@ -6,11 +6,38 @@ import com.labs1904.network.cookies.SerializableCookie
  * A CookieCache object represents a storage mechanism for cookies.
  */
 interface CookieCache {
+	/**
+	 * Inserts a SerializableCookie into this CookieCache
+	 */
 	fun insert(cookie: SerializableCookie)
+
+	/**
+	 * Inserts a list of SerializableCookies into this CookieCache
+	 */
 	fun insertAll(cookies: List<SerializableCookie>)
+
+	/**
+	 * Removes [cookie] from this CookieCache
+	 *
+	 * @param cookie The cookie to be removed
+	 */
 	fun remove(cookie: SerializableCookie)
+
+	/**
+	 * Removes all SerializableCookies defined within [cookies] from this CookieCache.
+	 */
 	fun removeAll(cookies: List<SerializableCookie>)
+
+	/**
+	 * Returns all cookies contained within this CookieCache
+	 *
+	 * @return A list of SerializableCookies contained within the cache
+	 */
 	fun load(): List<SerializableCookie>
+
+	/**
+	 * Clears all cookies from this cache
+	 */
 	fun clear()
 }
 
