@@ -12,7 +12,7 @@ allprojects {
 }
 ```
 
-## Lint
+## Lint [![](https://jitpack.io/v/1904labs/android-utils.svg)](https://jitpack.io/#1904labs/android-utils)
 The `lint` module contains a few custom lint checks:
 - `CompositeDisposableClearDetector`
     - A `CompositeDisposable` reference is being held, but it is not being cleared.
