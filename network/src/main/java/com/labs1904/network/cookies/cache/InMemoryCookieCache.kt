@@ -2,6 +2,10 @@ package com.labs1904.network.cookies.cache
 
 import com.labs1904.network.cookies.SerializableCookie
 
+/**
+ * An implementation of {@link com.labs1904.network.cookies.cache.SessionCookieCache SessionCookieCache}
+ * that uses a {@link kotlin.collections.MutableSet MutableSet} to store cookies.
+ */
 class InMemoryCookieCache(
 	private val cookies: MutableSet<SerializableCookie> = hashSetOf()
 ) : SessionCookieCache {

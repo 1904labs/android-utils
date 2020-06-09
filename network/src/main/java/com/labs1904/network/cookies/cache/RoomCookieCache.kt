@@ -8,6 +8,10 @@ import androidx.room.Query
 import com.labs1904.network.COOKIES_TABLE
 import com.labs1904.network.cookies.SerializableCookie
 
+/**
+ * An implementation of {@link com.labs1904.network.cookies.cache.PersistentCookieCache PersistentCookieCache}
+ * that stores cookies in a Room Database. This class defines the interactions with the database.
+ */
 @Dao
 abstract class RoomCookieCache : PersistentCookieCache {
 
