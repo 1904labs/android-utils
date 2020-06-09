@@ -10,14 +10,27 @@ import androidx.test.rule.ActivityTestRule
 import com.labs1904.test_utils.TestActivity
 import java.util.concurrent.locks.ReentrantLock
 
+/**
+ * Extension function to rotate the activity to landscape mode.
+ */
 fun <T : Activity?> ActivityTestRule<T>.rotateLandscape() {
     this.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 }
 
+/**
+ * Extension function to rotate the activity to portrait mode.
+ */
 fun <T : Activity?> ActivityTestRule<T>.rotatePortrait() {
     this.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 }
 
+/**
+ * Extension function to simplify launching a fragment into a TestActivity so that you may test it
+ * in isolation.
+ *
+ * @param  fragment Fragment you intend to launch.
+ * @param  bundle (optional) Bundle arguments you would like to be set on the fragment before launch.
+ */
 fun <T : TestActivity?> ActivityTestRule<T>.launchFragment(
     fragment: Fragment,
     bundle: Bundle? = null
@@ -33,6 +46,11 @@ fun <T : TestActivity?> ActivityTestRule<T>.launchFragment(
     }
 }
 
+/**
+ * Handles running any function you want on the main thread.
+ *
+ * @param  action Function you would like to run on the main thread.
+ */
 fun runOnMainThread(action: () -> Unit) {
     val reentrantLock = ReentrantLock()
 

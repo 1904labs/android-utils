@@ -5,10 +5,10 @@ import kotlin.random.Random
 private val CHARACTERS: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 
 /**
-* @param  from (optional) Starting value (inclusive)
-* @param  to (optional) Ending value (exclusive)
-* @return A random integer in the specified range.
-*/
+ * @param  from (optional) Starting value (inclusive)
+ * @param  to (optional) Ending value (exclusive)
+ * @return A random integer in the specified range.
+ */
 fun randomInt(from: Int = 0, to: Int = Int.MAX_VALUE): Int = Random.nextInt(from, to)
 
 /**
