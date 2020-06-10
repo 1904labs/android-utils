@@ -30,6 +30,22 @@ To include these lint checks in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
 
+## Network [![](https://img.shields.io/badge/Jitpack-network--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+The `network` module contains two network interceptors relating to API authentication, as well as a [RFC-6265](https://tools.ietf.org/html/rfc6265#section-5.3) compliant cookie implementation:
+- `AuthInterceptor`
+  - An OkHttp [Interceptor](https://square.github.io/okhttp/3.x/okhttp/okhttp3/Interceptor.html) that retrieves an authentication token using `TokenDataSource.currentTokens()`, and attaches it to outgoing requests using the `Authorization` header.
+- `RefreshInterceptor`
+  - An OkHttp [Interceptor](https://square.github.io/okhttp/3.x/okhttp/okhttp3/Interceptor.html) that attempts to refresh expired authentication tokens. Upon receiving a 401 error, the interceptor calls `TokenApi.refreshToken()`, stores the result using `TokenDataSource.insertTokens()`, and then retries the original request using the new token.
+- `PersistentCookieJar`
+  - An implementation of OkHttp's [CookieJar](https://square.github.io/okhttp/3.x/okhttp/okhttp3/CookieJar.html). This implementation stores session and persistent cookies using the `SessionCookieCache` and `PersistentCookieCache` interfaces. An implementation of each are included:
+    - `InMemoryCookieCache`: Stores session cookies using a `HashSet`
+    - `RoomCookieCache`: A [Dao](https://developer.android.com/reference/androidx/room/Dao) for the AndroidX Room library that stores persistent cookies in a SQLite database
+
+To include these components in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
+```
+
 ## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `test-utils` module contains the following to help make testing quicker and more standardized:
 - Utils to generate random non-null primitive data types:
@@ -38,7 +54,7 @@ The `test-utils` module contains the following to help make testing quicker and 
     - ```randomLong()``` - Generates a random long and allows you to specify a range. Default range is any positive long.
     - ```randomFloat()``` - Generates a random float and allows you to specify a range. Default range is any positive float.
     - ```randomCharacter()``` - Generates a random character in the set (a-z, A-Z, 0-9).
-    - ```randomString()``` - Generates a random string of the character set (a-z, A-Z, 0-9). 
+    - ```randomString()``` - Generates a random string of the character set (a-z, A-Z, 0-9).
     The length of the string can be set via a min and max length. Default is a random string between 5 and 30 characters.
     - ```randomBoolean()``` - Generates a random boolean.
 - Custom [Espresso](https://developer.android.com/training/testing/espresso) actions, assertions, and matchers to make
@@ -49,7 +65,7 @@ This is meant to be an extension of that library.**
     - ```rotateLandscape()``` - Easily rotate the screen into the landscape orientation.
     - ```rotatePortrait()``` - Easily rotate the screen into the portrait orientation.
     - ```launchFragment()``` - Easily launch a fragment into a dummy activity to test it in isolation.
-- ```replaceNavControllerWithMock()``` - Extension function built around ```Fragment``` to easily swap 
+- ```replaceNavControllerWithMock()``` - Extension function built around ```Fragment``` to easily swap
 the ```NavController``` with a mock.
 - ```runOnMainThread()``` - Utility function to easily run a function on the main thread.
 - ```RxIdlerTestRunner``` - A fully configured test runner that utilizes [RxIdler](https://github.com/square/RxIdler)
