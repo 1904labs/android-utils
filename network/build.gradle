@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+	compileSdkVersion build_versions.compile_sdk
+	buildToolsVersion build_versions.build_tools
+
+	defaultConfig {
+		minSdkVersion build_versions.min_sdk
+		targetSdkVersion build_versions.compile_sdk
+
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	testOptions {
+		unitTests.returnDefaultValues = true
+	}
+
+	sourceSets {
+		test {
+			java.srcDirs('src/sharedTest/java')
+		}
+
+		androidTest {
+			java.srcDirs('src/sharedTest/java')
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+}
+
+dependencies {
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+	implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
+	implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+
+	implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
+
+	implementation "androidx.room:room-runtime:$versions.room"
+	implementation "androidx.room:room-ktx:$versions.room"
+
+	testImplementation "junit:junit:$versions.junit"
+	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+
+	androidTestImplementation "androidx.test:core:$versions.androidx_test_core"
+	androidTestImplementation "androidx.test:rules:$versions.androidx_test_rules"
+	kaptAndroidTest "androidx.room:room-compiler:$versions.room"
+}
