@@ -55,3 +55,8 @@ the ```NavController``` with a mock.
 - ```RxIdlerTestRunner``` - A fully configured test runner that utilizes [RxIdler](https://github.com/square/RxIdler)
  to help cut down on flakiness when testing code that contains asynchronous RxJava operations.
 - ```TestActivity``` - A dummy activity used to test a Fragment in isolation.
+
+To use this module in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:test-utils:test-utils-1.0.0'
+```
