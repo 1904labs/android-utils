@@ -1,4 +1,5 @@
 rootProject.name='android-utils'
+include ':core'
 include ':test-utils'
 include ':lint-checks'
 include ':lint'
