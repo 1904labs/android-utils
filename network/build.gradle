@@ -17,6 +17,16 @@ android {
 	testOptions {
 		unitTests.returnDefaultValues = true
 	}
+
+	sourceSets {
+		test {
+			java.srcDirs('src/sharedTest/java')
+		}
+
+		androidTest {
+			java.srcDirs('src/sharedTest/java')
+		}
+	}
 }
 
 dependencies {
@@ -29,7 +39,7 @@ dependencies {
 
 	implementation "androidx.room:room-runtime:$versions.room"
 	implementation "androidx.room:room-ktx:$versions.room"
-	kapt "androix.room:room-compiler:$versions.room"
+	kapt "androidx.room:room-compiler:$versions.room"
 
 	testImplementation "junit:junit:$versions.junit"
 	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
