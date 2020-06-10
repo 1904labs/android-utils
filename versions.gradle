@@ -1,5 +1,6 @@
 // NOTE: Keep versions in alphabetical order
 def versions = [:]
+versions.androidx_lifecycle = "2.2.0"
 versions.androidx_test_core = "1.2.0"
 versions.androidx_test_rules = "1.2.0"
 versions.appcompat = "1.1.0"
