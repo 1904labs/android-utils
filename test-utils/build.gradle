@@ -30,10 +30,10 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     }
 
-    implementation "androidx.appcompat:appcompat:$versions.appcompat"
-    implementation "androidx.core:core-ktx:$versions.core_ktx"
-    implementation "androidx.navigation:navigation-runtime:$versions.navigation_androidx"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swipe_refresh_layout"
+    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
+    implementation "androidx.navigation:navigation-runtime:$versions.androidx_navigation"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.androidx_swipe_refresh_layout"
 
     implementation "com.google.android.material:material:$versions.material"
 
@@ -43,6 +43,6 @@ dependencies {
 
     testImplementation "junit:junit:$versions.junit"
 
-    androidTestImplementation "androidx.test.ext:junit:$versions.junit_androidx"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_espresso_core"
 }
