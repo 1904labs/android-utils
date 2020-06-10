@@ -27,6 +27,11 @@ android {
 			java.srcDirs('src/sharedTest/java')
 		}
 	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
 }
 
 dependencies {
@@ -39,11 +44,11 @@ dependencies {
 
 	implementation "androidx.room:room-runtime:$versions.room"
 	implementation "androidx.room:room-ktx:$versions.room"
-	kapt "androidx.room:room-compiler:$versions.room"
 
 	testImplementation "junit:junit:$versions.junit"
 	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 
 	androidTestImplementation "androidx.test:core:$versions.androidx_test_core"
 	androidTestImplementation "androidx.test:rules:$versions.androidx_test_rules"
+	kaptAndroidTest "androidx.room:room-compiler:$versions.room"
 }
