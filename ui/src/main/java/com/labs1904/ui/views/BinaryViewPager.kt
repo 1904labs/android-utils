@@ -37,7 +37,10 @@ class BinaryViewPager(context: Context, attrs: AttributeSet) : FrameLayout(conte
         tabLayout.addOnTabSelectedListener(this)
 
         if (fragmentManager.fragments.isNullOrEmpty()) {
-            safeLet(findOrCreateFragment(1), findOrCreateFragment(0)) { fragmentToHide, fragmentToShow ->
+            safeLet(
+                findOrCreateFragment(1),
+                findOrCreateFragment(0)
+            ) { fragmentToHide, fragmentToShow ->
                 executeTransaction(fragmentToHide, fragmentToShow, adapter.getPageTitle(0))
             }
         }
@@ -59,14 +62,24 @@ class BinaryViewPager(context: Context, attrs: AttributeSet) : FrameLayout(conte
     }
 
     override fun onTabSelected(tab: TabLayout.Tab) {
-        val hideFragment = (tab.position == 0) then findOrCreateFragment(1) ?: findOrCreateFragment(0)
-        val showFragment = (tab.position == 0) then findOrCreateFragment(0) ?: findOrCreateFragment(1)
+        val hideFragment =
+            (tab.position == 0) then findOrCreateFragment(1) ?: findOrCreateFragment(0)
+        val showFragment =
+            (tab.position == 0) then findOrCreateFragment(0) ?: findOrCreateFragment(1)
 
-        val exitSlide = (tab.position == 0) then R.anim.exit_right_view_pager ?: R.anim.exit_left_view_pager
-        val enterSlide = (tab.position == 0) then R.anim.enter_left_view_pager ?: R.anim.enter_right_view_pager
+        val exitSlide =
+            (tab.position == 0) then R.anim.exit_right_view_pager ?: R.anim.exit_left_view_pager
+        val enterSlide =
+            (tab.position == 0) then R.anim.enter_left_view_pager ?: R.anim.enter_right_view_pager
 
         safeLet(hideFragment, showFragment, adapter) { fragmentToHide, fragmentToShow, adapter ->
-            executeTransaction(fragmentToHide, fragmentToShow, adapter.getPageTitle(tab.position), enterSlide, exitSlide)
+            executeTransaction(
+                fragmentToHide,
+                fragmentToShow,
+                adapter.getPageTitle(tab.position),
+                enterSlide,
+                exitSlide
+            )
         }
     }
 
@@ -74,9 +87,20 @@ class BinaryViewPager(context: Context, attrs: AttributeSet) : FrameLayout(conte
 
     override fun onTabUnselected(tab: TabLayout.Tab) {}
 
-    private fun executeTransaction(fragmentToHide: Fragment, fragmentToShow: Fragment, pageTitle: String, enterAnimation: Int? = null, exitAnimation: Int? = null) {
+    private fun executeTransaction(
+        fragmentToHide: Fragment,
+        fragmentToShow: Fragment,
+        pageTitle: String,
+        enterAnimation: Int? = null,
+        exitAnimation: Int? = null
+    ) {
         fragmentManager?.beginTransaction()
-            ?.also { if (enterAnimation != null && exitAnimation != null) it.setCustomAnimations(enterAnimation, exitAnimation) }
+            ?.also {
+                if (enterAnimation != null && exitAnimation != null) it.setCustomAnimations(
+                    enterAnimation,
+                    exitAnimation
+                )
+            }
             ?.also { if (!fragmentToShow.isAdded) it.add(id, fragmentToShow, pageTitle) }
             ?.hide(fragmentToHide)
             ?.show(fragmentToShow)
@@ -92,11 +116,16 @@ class BinaryViewPager(context: Context, attrs: AttributeSet) : FrameLayout(conte
 
     private infix fun <T> Boolean.then(value: T): T? = if (this) value else null
 
-    private fun <T1: Any, T2: Any, R: Any> safeLet(p1: T1?, p2: T2?, block: (T1, T2) -> R?): R? {
+    private fun <T1 : Any, T2 : Any, R : Any> safeLet(p1: T1?, p2: T2?, block: (T1, T2) -> R?): R? {
         return if (p1 != null && p2 != null) block(p1, p2) else null
     }
 
-    private fun <T1: Any, T2: Any, T3: Any, R: Any> safeLet(p1: T1?, p2: T2?, p3: T3?, block: (T1, T2, T3) -> R?): R? {
+    private fun <T1 : Any, T2 : Any, T3 : Any, R : Any> safeLet(
+        p1: T1?,
+        p2: T2?,
+        p3: T3?,
+        block: (T1, T2, T3) -> R?
+    ): R? {
         return if (p1 != null && p2 != null && p3 != null) block(p1, p2, p3) else null
     }
 }

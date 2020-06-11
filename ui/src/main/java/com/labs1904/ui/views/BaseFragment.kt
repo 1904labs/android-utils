@@ -17,7 +17,11 @@ open class BaseFragment : Fragment() {
     protected val supportActionBar: ActionBar?
         get() = activity?.supportActionBar
 
-    protected fun setUpToolbar(toolbar: Toolbar, initialTitle: String? = null, shouldShowTitle: Boolean = true) {
+    protected fun setUpToolbar(
+        toolbar: Toolbar,
+        initialTitle: String? = null,
+        shouldShowTitle: Boolean = true
+    ) {
         activity?.apply {
             setSupportActionBar(toolbar)
 
