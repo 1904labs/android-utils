@@ -79,3 +79,11 @@ fun Number.formatWholeNumber(): String =
 		this.toInt().toString()
 	else
 		this.toString()
+
+/**
+ * Checks whether this Number is either null or 0
+ *
+ * @return true if this Number is null or 0, false otherwise
+ */
+fun Number?.isNullOrZero(): Boolean =
+	this == null || this.toDouble() == 0.0
