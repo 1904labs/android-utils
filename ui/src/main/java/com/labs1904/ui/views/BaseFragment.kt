@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
+/**
+ * BaseFragment is an extension of Fragment with a few helpers tacked on. This class makes setting up a toolbar,
+ * getting a reference to an AppCompatActivity, and getting a reference to the ActionBar a bit easier.
+ */
 open class BaseFragment : Fragment() {
 
     protected val activity: AppCompatActivity?
