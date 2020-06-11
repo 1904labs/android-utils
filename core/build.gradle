@@ -16,4 +16,6 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
 	implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.androidx_lifecycle"
+
+	implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 }
