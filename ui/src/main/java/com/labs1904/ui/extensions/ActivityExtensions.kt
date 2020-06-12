@@ -1,35 +1,31 @@
 package com.labs1904.ui.extensions
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
 import androidx.core.app.NavUtils
 import com.labs1904.ui.R
 import io.reactivex.rxjava3.core.Observable
 
-fun Activity.openDialer(uri: Uri) {
-    this.startActivity(Intent(Intent.ACTION_DIAL, uri))
-}
+fun Activity.openDialer(uri: Uri) { startActivity(Intent(Intent.ACTION_DIAL, uri)) }
 
-fun Activity.enterLeftExitRight() {
-    this.overridePendingTransition(R.anim.enter_left, R.anim.exit_right)
-}
+fun Activity.enterLeftExitRight() { overridePendingTransition(R.anim.enter_left, R.anim.exit_right) }
 
-fun Activity.enterRightExitLeft() {
-    this.overridePendingTransition(R.anim.enter_right, R.anim.exit_left)
-}
+fun Activity.enterRightExitLeft() { overridePendingTransition(R.anim.enter_right, R.anim.exit_left) }
 
 fun Activity.finishAndExitWithAnimation() {
-    this.finish()
+    finish()
     enterRightExitLeft()
 }
 
 fun Activity.finishAndExitWithBackAnimation() {
-    this.finish()
+    finish()
     enterLeftExitRight()
 }
 
@@ -45,7 +41,8 @@ fun Activity.keyboardStatusForAdjustPan(@IdRes contentId: Int): Observable<Boole
         findViewById<ViewGroup>(contentId).let { rootView ->
             ViewTreeObserver.OnGlobalLayoutListener {
                 val screenHeight = rootView.height
-                val keypadHeight = screenHeight - Rect().apply{ rootView.getWindowVisibleDisplayFrame(this) }.bottom
+                val keypadHeight =
+                    screenHeight - Rect().apply { rootView.getWindowVisibleDisplayFrame(this) }.bottom
                 emitter.onNext(keypadHeight > screenHeight * 0.15)
             }.let { listener ->
                 rootView.viewTreeObserver.addOnGlobalLayoutListener(listener)
@@ -72,3 +69,11 @@ fun Activity.keyboardStatusForAdjustResize(@IdRes contentId: Int): Observable<Bo
             }
         }
     }.distinctUntilChanged()
+
+fun Activity.hideKeyboard() {
+    val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    currentFocus?.let {
+        inputManager.hideSoftInputFromWindow(it.windowToken, 0)
+        it.clearFocus()
+    }
+}
