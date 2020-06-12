@@ -68,9 +68,9 @@ class BinaryViewPager(context: Context, attrs: AttributeSet) : FrameLayout(conte
             (tab.position == 0) then findOrCreateFragment(0) ?: findOrCreateFragment(1)
 
         val exitSlide =
-            (tab.position == 0) then R.anim.exit_right_view_pager ?: R.anim.exit_left_view_pager
+            (tab.position == 0) then R.anim.exit_right ?: R.anim.exit_left
         val enterSlide =
-            (tab.position == 0) then R.anim.enter_left_view_pager ?: R.anim.enter_right_view_pager
+            (tab.position == 0) then R.anim.enter_left ?: R.anim.enter_right
 
         safeLet(hideFragment, showFragment, adapter) { fragmentToHide, fragmentToShow, adapter ->
             executeTransaction(

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.labs1904.ui.R
+import com.labs1904.ui.extensions.dpToPx
 import kotlin.math.roundToInt
 
 /**
@@ -61,7 +62,7 @@ class LineDividerDecoration(
                     parent.height - parent.paddingBottom
                 )
             } else {
-                left = context.dpToPx(16F.toInt())
+                left = context.dpToPx(16f).toInt()
                 right = parent.width
             }
 
