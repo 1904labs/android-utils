@@ -6,8 +6,8 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 /**
- * This binding adapter allows us to easily bind to a string URL to load a network image into an ImageView
- * via Glide. It also handles displaying a placeholder as well as an error drawable.
+ * This binding adapter allows us to easily bind to a string URL to load a network image into an
+ * {@link android.widget.ImageView ImageView} via Glide. It also handles displaying a placeholder as well as an error drawable.
  *
  * @param url The URL of the image you are intending to load.
  * @param placeholderDrawable The drawable resource id for the image you want to display while the network

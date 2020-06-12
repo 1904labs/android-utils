@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * This snap helper can be attached to a RecyclerView to snap views into the center one by one.
- * This swipe behavior is usually used in a carousel/gallery type implementation where the user can
+ * This snap helper can be attached to a {@link androidx.recyclerview.widget.RecyclerView RecyclerView} to snap
+ * views into the center one by one. This swipe behavior is usually used in a carousel/gallery type implementation where the user can
  * swipe through each item without worrying about their fling velocity.
  */
 class SnapHelperOneByOne : LinearSnapHelper() {
