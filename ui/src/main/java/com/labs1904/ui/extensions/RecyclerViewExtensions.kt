@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.labs1904.ui.R
 import com.labs1904.ui.utils.LineDividerDecoration
 
-fun RecyclerView.findFirstVisibleItemPosition(): Int = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+fun RecyclerView.findFirstVisibleItemPosition(): Int =
+    (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
 fun RecyclerView.getLastAdapterItemIndex(): Int = adapter?.itemCount?.minus(1) ?: -1
 
@@ -16,7 +17,8 @@ fun RecyclerView.addItemSeparator(
     shouldShowLastItem: Boolean = false
 ) {
     context?.let { ctx ->
-        val itemDecoration = LineDividerDecoration(ctx, orientation, separatorDrawable, shouldShowLastItem)
+        val itemDecoration =
+            LineDividerDecoration(ctx, orientation, separatorDrawable, shouldShowLastItem)
         addItemDecoration(itemDecoration)
     }
 }

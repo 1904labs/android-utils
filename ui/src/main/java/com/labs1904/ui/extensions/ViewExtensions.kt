@@ -5,15 +5,25 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 
-fun View.visible() { visibility = View.VISIBLE }
+fun View.visible() {
+    visibility = View.VISIBLE
+}
 
-fun View.invisible() { visibility = View.INVISIBLE }
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
 
-fun View.gone() { visibility = View.GONE }
+fun View.gone() {
+    visibility = View.GONE
+}
 
-fun View.enable() { isEnabled = true }
+fun View.enable() {
+    isEnabled = true
+}
 
-fun View.disable() { isEnabled = false }
+fun View.disable() {
+    isEnabled = false
+}
 
 fun View?.findOutermostViewGroup(): ViewGroup? {
     var currentView = this
@@ -28,7 +38,7 @@ fun View?.findOutermostViewGroup(): ViewGroup? {
 
         currentView = currentView?.parent as? View
 
-    } while(currentView != null)
+    } while (currentView != null)
 
     return fallback
 }
