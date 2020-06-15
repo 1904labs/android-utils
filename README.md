@@ -76,3 +76,42 @@ To use this module in your project, add the following dependency:
 ```
 implementation 'com.github.1904labs.android-utils:test-utils:test-utils-1.0.0'
 ```
+
+## UI [![](https://img.shields.io/badge/Jitpack-ui--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+The `ui` module contains the following:
+- Custom BindingAdapters:
+    - ```ImageView.showNetworkImage()``` - Bind to a URL to be able to load images into the ImageView 
+    via Glide. This custom adapter also allows you to specify a placeholder and an error Drawable.
+    - ```View.setVisible()``` - Bind to a boolean to be able to set the visibility of the view.
+- Various extension functions for the following:
+    - Context
+    - Activity
+    - Fragment
+    - RecyclerView
+    - TabLayout
+    - View
+    - ViewGroup
+- Various Utils
+    - ```AnimationEndListener``` - This is an interface that cuts down on some boilerplate code when trying
+    to implement an AnimationListener when all you care about is wanting to know when the animation ends.
+    - ```HtmlListTagHandler``` - Custom tag handler that can be passed in when converting from Html to
+    a Spannable. This tag handler properly numbers ordered lists as well as properly indents both
+    ordered and unordered Html lists.
+    - ```LineDividerDecoration``` - This decorator can be added to a RecyclerView to draw a separator 
+    between the items. It can take in a custom drawable, work with vertical or horizontal orientations, 
+    and can hide the separator on the last item if desired.
+    - ```SnapHelperOneByOne``` - This can be attached to a RecyclerView to allow the items to snap into
+    place in the center one by one. This is typically used for a gallery/carousel type implementation.
+    - ```ViewModelFactoryUtil``` - This utility function cuts down on some of the boilerplate code 
+    around creating a ViewModelProvider factory.
+- Reusable Views
+    - ```BaseFragment``` - A headless view class that is an extension of Fragment with a few helpers 
+    tacked on. This class makes setting up a toolbar, getting a reference to an AppCompatActivity, 
+    and getting a reference to the ActionBar a bit easier.
+    - ```BinaryViewPager``` - This is a custom ViewPager that lazily loads Fragments and does not 
+    support swiping. Currently, it only supports a max of two Fragments.
+
+To use this module in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:ui:ui-1.0.0'
+```
