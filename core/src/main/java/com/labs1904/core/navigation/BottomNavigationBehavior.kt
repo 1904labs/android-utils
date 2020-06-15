@@ -63,6 +63,7 @@ import com.labs1904.core.livedata.KotlinMutableLiveData
  *	}
  * </pre>
  */
+@Suppress("Unused")
 class BottomNavigationBehavior(
 	private val bottomNavigationView: BottomNavigationView,
 	private val bottomNavigationItems: List<BottomNavigationItem>,
@@ -75,6 +76,7 @@ class BottomNavigationBehavior(
 	private val _currentNavController: KotlinMutableLiveData<NavController?> = KotlinMutableLiveData(null)
 	private var selectedItemTag: String
 
+	@Suppress("Unused")
 	val currentNavController: KotlinLiveData<NavController?> = _currentNavController
 
 	init {
