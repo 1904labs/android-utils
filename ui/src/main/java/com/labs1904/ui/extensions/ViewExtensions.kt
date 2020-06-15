@@ -43,6 +43,8 @@ fun View.disable() {
 /**
  * Climbs the view hierarchy to find the outermost ViewGroup still contained within the app. This is
  * useful when trying to display a custom Snackbar from any view.
+ *
+ * @return The outermost ViewGroup within the application.
  */
 fun View?.findOutermostViewGroup(): ViewGroup? {
     var currentView = this
