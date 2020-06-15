@@ -11,6 +11,58 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.labs1904.core.livedata.KotlinLiveData
 import com.labs1904.core.livedata.KotlinMutableLiveData
 
+/**
+ * This class acts as a bridge between the AndroidX Navigation library, and a
+ * <a href="https://developer.android.com/reference/com/google/android/material/bottomnavigation/BottomNavigationView">BottomNavigationView</a>.
+ *
+ * It maintains a separate navigation graph and back stack for each bottom tab. This is achieved by
+ * creating a NavHostFragment for each BottomNavigationItem (class that contains a mapping between a bottom tab and its navigation graph).
+ * When a user switches bottom tabs, this class swaps the appropriate NavHostFragments. When a tab is `reselected`, this class
+ * pops the back stack of the associated NavController, bringing the user to the first destination in that tab's graph.
+ *
+ * Example usage:
+ * <pre>
+ *	class MainActivity : AppCompatActivity() {
+ *
+ *		private var currentNavController: NavController? = null
+ *
+ *		override fun onCreate(savedInstanceState: Bundle?) {
+ *			super.onCreate(savedInstanceState)
+ *			setContentView(R.layout.activity_main)
+ *
+ *			if (savedInstanceState == null) setupBottomNavigationView()
+ *		}
+ *
+ *		override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+ *			super.onRestoreInstanceState(savedInstanceState)
+ *
+ *			setupBottomNavigationView()
+ *		}
+ *
+ *		private fun setupBottomNavigationView() {
+ *			val bottomNavigationItems = listOf(
+ *				BottomNavigationItem(R.id.home_tab, R.navigation.home),
+ *				BottomNavigationItem(R.id.profile_tab, R.navigation.profile),
+ *				BottomNavigationItem(R.id.settings_tab, R.navigation.settings)
+ *			)
+ *
+ *			val bottomNavigationBehavior = BottomNavigationBehavior(
+ *				findViewById(R.id.bottom_nav),
+ *				bottomNavigationItems,
+ *				supportFragmentManager,
+ *				R.id.nav_host_fragment_container
+ *			)
+ *
+ *			bottomNavigationBehavior.currentNavController.observe(this, Observer {
+ *				currentNavController = it
+ *			})
+ *		}
+ *
+ *		override fun onSupportNavigateUp(): Boolean =
+ *			currentNavController?.navigateUp() ?: false
+ *	}
+ * </pre>
+ */
 class BottomNavigationBehavior(
 	private val bottomNavigationView: BottomNavigationView,
 	private val bottomNavigationItems: List<BottomNavigationItem>,
