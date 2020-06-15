@@ -10,6 +10,10 @@ android {
 		minSdkVersion build_versions.min_sdk
 		targetSdkVersion build_versions.compile_sdk
 	}
+
+	testOptions {
+		unitTests.returnDefaultValues = true
+	}
 }
 
 dependencies {
