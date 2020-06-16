@@ -89,7 +89,13 @@ class StringUtilsKxTest {
 	fun `parseAsDate() success`() {
 		val result = "03-26-1994".parseAsDate("MM-dd-yyyy")
 
-		assertEquals(764661600000, result?.time)
+		Calendar.getInstance().apply {
+			time = result!!
+
+			assertEquals(2, get(Calendar.MONTH))
+			assertEquals(26, get(Calendar.DAY_OF_MONTH))
+			assertEquals(1994, get(Calendar.YEAR))
+		}
 	}
 
 	@Test
