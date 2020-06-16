@@ -1,8 +1,8 @@
-name: Pull Request Workflow
+name: pull-request
 
 on: pull_request
 
-jobs: 
+jobs:
   lint:
     name: Android Lint
     runs-on: ubuntu-latest
