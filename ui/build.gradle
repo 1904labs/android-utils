@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -11,7 +12,7 @@ android {
         targetSdkVersion build_versions.compile_sdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -21,25 +22,24 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
-    implementation("com.schibsted.spain:barista:$versions.barista") {
-        exclude group: 'org.jetbrains.kotlin'
-    }
-
-    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
     implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
-    implementation "androidx.navigation:navigation-runtime:$versions.androidx_navigation"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.androidx_swipe_refresh_layout"
+    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$versions.androidx_lifecycle"
 
     implementation "com.google.android.material:material:$versions.material"
 
-    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+    implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 
-    implementation "com.squareup.rx.idler:rx3-idler:$versions.rxidler"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
 
     testImplementation "junit:junit:$versions.junit"
 
