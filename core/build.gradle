@@ -26,4 +26,7 @@ dependencies {
 	implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation_androidx"
 
 	implementation "com.google.android.material:material:$versions.material"
+
+	testImplementation "junit:junit:$versions.junit"
+	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 }

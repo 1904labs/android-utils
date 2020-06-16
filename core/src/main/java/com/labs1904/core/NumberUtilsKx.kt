@@ -52,7 +52,7 @@ fun Number.formatCurrencyNoDecimal(locale: Locale = Locale.getDefault(), currenc
 		numberFormat.minimumFractionDigits = 0
 		numberFormat.maximumFractionDigits = 0
 
-		numberFormat.format(this.toLong())
+		numberFormat.format(this)
 	} catch (e: Exception) { null }
 
 /**
@@ -62,11 +62,7 @@ fun Number.formatCurrencyNoDecimal(locale: Locale = Locale.getDefault(), currenc
  * @return This Number formatted as a percentage
  */
 fun Number.formatPercentage(precision: Int = 0): String =
-	if (precision == 0) {
-		"${this.toLong()}%"
-	} else {
-		"%.${precision}f%%".format(this.toDouble())
-	}
+	"%.${precision}f%%".format(this.toDouble())
 
 /**
  * Converts this Number into a String, taking into account if it represents a whole number. The output String

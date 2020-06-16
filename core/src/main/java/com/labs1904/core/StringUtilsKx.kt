@@ -19,11 +19,14 @@ private val whitespace: Regex by lazy { "\\s+".toRegex() }
  * @return This String, with its first n characters replaced with [maskChar]
  */
 fun String.maskFirstNChars(numMaskedChars: Int, maskChar: Char = '*'): String =
-	maskChar.toString().repeat(numMaskedChars).let { maskedSection ->
-		when {
-			numMaskedChars == 0 -> this
-			this.length <= numMaskedChars -> maskedSection
-			else -> this.replaceRange(0 until numMaskedChars, maskedSection)
+	if (numMaskedChars <= 0) {
+		this
+	} else {
+		maskChar.toString().repeat(numMaskedChars).let { maskedSection ->
+			when {
+				this.length <= numMaskedChars -> maskedSection
+				else -> this.replaceRange(0 until numMaskedChars, maskedSection)
+			}
 		}
 	}
 
@@ -45,7 +48,7 @@ fun String.extractInitials(locale: Locale = Locale.getDefault()): String? =
 	this.trim().split(whitespace).mapNotNull { it.firstOrNull() }.takeIf { it.isNotEmpty() }?.let { splitString ->
 		when (splitString.size) {
 			1 -> splitString.first().toString()
-			else -> "${splitString.first()} ${splitString.last()}"
+			else -> "${splitString.first()}${splitString.last()}"
 		}
 	}?.toUpperCase(locale)
 
