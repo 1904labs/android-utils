@@ -12,6 +12,30 @@ allprojects {
 }
 ```
 
+## Core [![](https://img.shields.io/badge/Jitpack-core--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+The `core` module contains extension functions for Kotlin data types, as well as some helper classes around `LiveData`, AndroidX Navigation, and RxJava `Diposables`:
+- LiveData
+    - `KotlinLiveData` - A `LiveData` class that enforces Kotlin's nullable types
+    - `KotlinMutableLiveData` - A `MutableLiveData` class that enforces Kotlin's nullable types
+- AndroidX Navigation
+    - `BottomNavigationBehavior` - This class acts as a bridge between the AndroidX Navigation library and a `BottomNavigationView`. It creates a separate back stack of `Fragments` for each bottom navigation tab and handles switching between these back stacks whenever the currently selected tab has changed. This allows users to switch tabs without losing their navigation state.
+- RxJava
+    - `DisposableUtilsKx` - Extension functions for RxJava's `Disposable` type
+- Various extension functions for built-in types:
+    - `BooleanUtilsKx`
+    - `CollectionUtilsKx`
+    - `DateUtilsKx`
+    - `DoubleUtilsKx`
+    - `FloatUtilsKx`
+    - `NumberUtilsKx`
+    - `StringUtilsKx`
+    - `UtilsKx`
+
+To include this module in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:core:core-1.0.0'
+```
+
 ## Lint [![](https://img.shields.io/badge/Jitpack-lint--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `lint` module contains a few custom lint checks:
 - `CompositeDisposableClearDetector`
