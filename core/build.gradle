@@ -23,7 +23,7 @@ dependencies {
 
 	implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 
-	implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation_androidx"
+	implementation "androidx.navigation:navigation-fragment-ktx:$versions.androidx_navigation"
 
 	implementation "com.google.android.material:material:$versions.material"
 
