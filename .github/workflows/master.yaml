@@ -1,1 +1,44 @@
+name: Master Branch Workflow
 
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  lint:
+    name: Android Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.3.0
+        with:
+          java-version: 1.8
+      - name: Run Android Lint
+        run: ./gradlew lint
+      - name: Upload Lint Results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: "*/build/reports"
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.3.0
+        with:
+          java-version: 1.8
+      - name: Run Unit Tests
+        run: ./gradlew test
+      - name: Upload Unit Test Results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: "*/build/reports"
