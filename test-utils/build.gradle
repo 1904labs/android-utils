@@ -40,9 +40,4 @@ dependencies {
     implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 
     implementation "com.squareup.rx.idler:rx3-idler:$versions.rxidler"
-
-    testImplementation "junit:junit:$versions.junit"
-
-    androidTestImplementation "androidx.test.ext:junit:$versions.androidx_junit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_espresso_core"
 }
