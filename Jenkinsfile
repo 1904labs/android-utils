@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'default'
-  }
+  agent any
 
   options {
     skipStagesAfterUnstable()
