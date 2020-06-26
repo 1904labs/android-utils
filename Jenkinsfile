@@ -7,11 +7,11 @@ pipeline {
 
   stages {
 
-  	stage('Configure Android'){
-      steps {
-        sh "${ANDROID_HOME}/tools/bin/sdkmanager build-tools;${ANDROID_BUILD_TOOLS_VERSION} platforms;android-${ANDROID_VERSION} platform-tools"
-      }
-  	}
+//   	stage('Configure Android'){
+//       steps {
+//         sh "${ANDROID_HOME}/tools/bin/sdkmanager build-tools;${ANDROID_BUILD_TOOLS_VERSION} platforms;android-${ANDROID_VERSION} platform-tools"
+//       }
+//   	}
 
     stage('Static analysis') {
       steps {
