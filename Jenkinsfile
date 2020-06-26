@@ -9,7 +9,7 @@ pipeline {
 
   	stage('Configure Android'){
       steps {
-        sh "sudo ${ANDROID_HOME}/tools/bin/sdkmanager build-tools;${ANDROID_BUILD_TOOLS_VERSION} platforms;android-${ANDROID_VERSION} platform-tools"
+        sh "${ANDROID_HOME}/tools/bin/sdkmanager build-tools;${ANDROID_BUILD_TOOLS_VERSION} platforms;android-${ANDROID_VERSION} platform-tools"
       }
   	}
 
