@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_standard">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/state_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_thin"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_title_text_size"
+        app:layout_constraintBottom_toTopOf="@id/positive_cases_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Alabama" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/positive_cases_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_thin"
+        android:layout_marginRight="@dimen/margin_thin"
+        android:fontFamily="sans-serif"
+        android:text="@string/positive_cases"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBottom_toTopOf="@id/hospitalized_label"
+        app:layout_constraintEnd_toStartOf="@id/positive_cases_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/positive_cases_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/positive_cases_label"
+        app:layout_constraintBottom_toTopOf="@id/hospitalized_label"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+        app:layout_constraintStart_toEndOf="@id/positive_cases_label"
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        tools:text="19,000" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hospitalized_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_thin"
+        android:layout_marginRight="@dimen/margin_thin"
+        android:fontFamily="sans-serif"
+        android:text="@string/hospitalized"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/hospitalized_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/positive_cases_label" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hospitalized_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/hospitalized_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+        app:layout_constraintStart_toEndOf="@id/hospitalized_label"
+        app:layout_constraintTop_toBottomOf="@id/positive_cases_label"
+        tools:text="10,323" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/recovered_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_thin"
+        android:layout_marginRight="@dimen/margin_thin"
+        android:fontFamily="sans-serif"
+        android:text="@string/recovered"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/positive_cases_label"
+        app:layout_constraintBottom_toTopOf="@id/deaths_label"
+        app:layout_constraintEnd_toStartOf="@id/recovered_value"
+        app:layout_constraintStart_toEndOf="@id/vertical_guide"
+        app:layout_constraintTop_toBottomOf="@id/state_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/recovered_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/positive_cases_label"
+        app:layout_constraintBottom_toTopOf="@id/deaths_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recovered_label"
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        tools:text="7,980" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/deaths_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_thin"
+        android:layout_marginRight="@dimen/margin_thin"
+        android:fontFamily="sans-serif"
+        android:text="@string/deaths"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/hospitalized_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deaths_value"
+        app:layout_constraintStart_toEndOf="@id/vertical_guide"
+        app:layout_constraintTop_toBottomOf="@id/recovered_label" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/deaths_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/list_item_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/hospitalized_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/deaths_label"
+        app:layout_constraintTop_toBottomOf="@id/recovered_label"
+        tools:text="2,360" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,7 @@
     <color name="bottomNavigationBorder">#e7e7e7</color>
     <color name="bottomNavigationActive">@color/colorPrimary</color>
     <color name="bottomNavigationInactive">#e4e4e4</color>
+
+    <color name="primaryTextColor">#333333</color>
+
 </resources>
