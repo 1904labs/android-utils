@@ -10,19 +10,19 @@ object CovidFactory {
 
 	private const val BASE_URL = "covidtracking.com/api/v1/"
 
-	private val okHttp: OkHttpClient = OkHttpClient.Builder()
+	private var okHttp: OkHttpClient = OkHttpClient.Builder()
 		.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 		.build()
 
-	private val retrofit: Retrofit = Retrofit.Builder()
+	private var retrofit: Retrofit = Retrofit.Builder()
 		.baseUrl(BASE_URL)
 		.client(okHttp)
 		.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 		.addConverterFactory(MoshiConverterFactory.create())
 		.build()
 
-	val covidApi: CovidApi = retrofit.create(CovidApi::class.java)
+	var covidApi: CovidApi = retrofit.create(CovidApi::class.java)
 
-	val covidRepo: CovidRepo = CovidRepository()
+	var covidRepo: CovidRepo = CovidRepository()
 
 }
