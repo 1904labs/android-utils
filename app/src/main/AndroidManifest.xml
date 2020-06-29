@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.labs1904.tracker">
 
+	<uses-permission android:name="android.permission.INTERNET" />
+
 	<application
 		android:name=".CovidApplication"
 		android:allowBackup="false"
