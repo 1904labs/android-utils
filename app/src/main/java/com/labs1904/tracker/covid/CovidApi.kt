@@ -1,4 +1,4 @@
-package com.labs1904.tracker
+package com.labs1904.tracker.covid
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
