@@ -1,0 +1,23 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+	compileSdkVersion build_versions.compile_sdk
+	buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.labs1904.tracker"
+		minSdkVersion build_versions.min_sdk
+		targetSdkVersion build_versions.compile_sdk
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
+    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+}
