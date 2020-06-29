@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -34,7 +35,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/state_dashboard"
                 android:textColor="@android:color/white"
-                android:textSize="22sp" />
+                android:textSize="@dimen/toolbar_text_size" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -44,6 +45,8 @@
         android:id="@+id/state_dashboard_progress_bar"
         android:layout_width="@dimen/progressBarSize"
         android:layout_height="@dimen/progressBarSize"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
