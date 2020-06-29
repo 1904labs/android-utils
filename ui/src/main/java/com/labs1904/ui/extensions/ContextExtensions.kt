@@ -30,3 +30,23 @@ fun Context.getColorHex(@ColorRes colorId: Int): String =
     ContextCompat.getColor(this, colorId).let {
         String.format("#%06X", (0xFFFFFF and it))
     }
+
+/**
+ * A more concise and readable way of checking if you have permission to use the camera.
+ *
+ * @return A boolean that is true if the CAMERA permission is granted and false otherwise.
+ */
+fun Context.hasCameraPermission(): Boolean = ContextCompat.checkSelfPermission(
+    this,
+    android.Manifest.permission.CAMERA
+) == androidx.core.content.PermissionChecker.PERMISSION_GRANTED
+
+/**
+ * A more concise and readable way of checking if you have permission to record audio.
+ *
+ * @return A boolean that is true if the RECORD_AUDIO permission is granted and false otherwise.
+ */
+fun Context.hasAudioPermission(): Boolean = ContextCompat.checkSelfPermission(
+    this,
+    android.Manifest.permission.RECORD_AUDIO
+) == androidx.core.content.PermissionChecker.PERMISSION_GRANTED
