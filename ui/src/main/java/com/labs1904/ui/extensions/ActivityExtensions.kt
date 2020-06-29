@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NavUtils
 import com.labs1904.ui.R
 import io.reactivex.rxjava3.core.Observable
@@ -165,3 +166,18 @@ fun Activity.hideKeyboard() {
  */
 fun Activity.inputMethodManager(): InputMethodManager =
     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+/**
+ * Slightly more concise way of requesting permissions. This function ensures backwards compatibility.
+ *
+ * @param permissions An array of the permissions (Strings) you are requesting.
+ * @param requestCode An integer that is used within the onRequestPermissionResult(requestCode, permissions, grantResults)
+ * callback to allow you to know which request you are currently responding to.
+ */
+fun Activity.requestPermission(permissions: Array<String>, requestCode: Int) {
+    ActivityCompat.requestPermissions(
+        this,
+        permissions,
+        requestCode
+    )
+}
