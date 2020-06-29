@@ -30,6 +30,7 @@ The `core` module contains extension functions for Kotlin data types, as well as
     - `NumberUtilsKx`
     - `StringUtilsKx`
     - `UtilsKx`
+    - `LiveDataUtilsKx`
 
 To include this module in your project, add the following dependency:
 ```
@@ -64,7 +65,9 @@ The `network` module contains two network interceptors relating to API authentic
   - An implementation of OkHttp's [CookieJar](https://square.github.io/okhttp/3.x/okhttp/okhttp3/CookieJar.html). This implementation stores session and persistent cookies using the `SessionCookieCache` and `PersistentCookieCache` interfaces. An implementation of each are included:
     - `InMemoryCookieCache`: Stores session cookies using a `HashSet`
     - `RoomCookieCache`: A [Dao](https://developer.android.com/reference/androidx/room/Dao) for the AndroidX Room library that stores persistent cookies in a SQLite database
-
+- `is401Unauthorized()`
+    - Any easy way to check if a Throwable is a Retrofit HttpException with a 401 code.
+    
 To include these components in your project, add the following dependency:
 ```
 implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
@@ -134,6 +137,8 @@ The `ui` module contains the following:
     and getting a reference to the ActionBar a bit easier.
     - ```BinaryViewPager``` - This is a custom ViewPager that lazily loads Fragments and does not
     support swiping. Currently, it only supports a max of two Fragments.
+    - ```IconToggleButton``` - This is a custom toggle button that allows you to have a checked and an unchecked state with a
+    icon in the center.
 
 To use this module in your project, add the following dependency:
 ```
