@@ -13,6 +13,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
 }
 
 dependencies {
@@ -26,6 +31,8 @@ dependencies {
 	implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
 	implementation "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofit"
 	implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+
+	implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
 
 	implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 }

@@ -10,7 +10,7 @@ interface CovidRepo {
 }
 
 class CovidRepository(
-	private val covidApi: CovidApi,
+	private val covidApi: CovidApi = CovidFactory.covidApi,
 	private val scheduler: Scheduler = Schedulers.io()
 ) : CovidRepo {
 
