@@ -18,12 +18,19 @@ android {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
+
+	kotlinOptions {
+		jvmTarget = JavaVersion.VERSION_1_8.toString()
+	}
 }
 
 dependencies {
+	implementation project(':core')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
+	implementation "androidx.fragment:fragment-ktx:$versions.androidx_fragment"
     implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
 	implementation "androidx.constraintlayout:constraintlayout:$versions.androidx_constraint_layout"
 
@@ -36,6 +43,9 @@ dependencies {
 	implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
 
 	implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
+	implementation "io.reactivex.rxjava3:rxandroid:$versions.rxandroid"
 
     implementation "com.google.android.material:material:$versions.material"
+
+	implementation "com.jakewharton.timber:timber:$versions.timber"
 }
