@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.labs1904.tracker.state.StateDashboardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 	private fun createFragment(fragmentToCreate: BottomNavFragments, transaction: FragmentTransaction) =
 		when (fragmentToCreate) {
 			BottomNavFragments.HOME -> Fragment()
-			BottomNavFragments.STATE_DASHBOARD -> Fragment()
+			BottomNavFragments.STATE_DASHBOARD -> StateDashboardFragment.newInstance()
 		}.also {
 			transaction.add(R.id.main_content, it, fragmentToCreate.name)
 		}
