@@ -25,17 +25,16 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false">
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/home_image"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
-                        android:layout_marginTop="@dimen/margin_standard"
+                        android:layout_height="100dp"
+						android:scaleType="centerCrop"
                         app:errorDrawable="@{viewModel.errorDrawable}"
-                        app:layout_constraintEnd_toEndOf="@id/end_guide"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:placeholderDrawable="@{viewModel.placeholderDrawable}"
                         app:url="@{viewModel.homeImageURL}" />
@@ -59,7 +58,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_standard"
                         android:layout_marginEnd="@dimen/margin_standard"
-                        android:layout_marginRight="@dimen/margin_standard"
                         app:layout_constraintEnd_toStartOf="@id/total_positive_card"
                         app:layout_constraintStart_toStartOf="@id/start_guide"
                         app:layout_constraintTop_toBottomOf="@id/testing_title"
@@ -112,7 +110,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_standard"
                         android:layout_marginEnd="@dimen/margin_standard"
-                        android:layout_marginRight="@dimen/margin_standard"
                         android:layout_marginBottom="@dimen/margin_standard"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/total_deaths_card"
