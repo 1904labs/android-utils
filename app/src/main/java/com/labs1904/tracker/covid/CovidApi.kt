@@ -28,7 +28,8 @@ data class NationwideResponse(
 	val recovered: Int?,
 	val dateChecked: String?,
 	val death: Int?,
-	val hash: String?
+	val hash: String?,
+	val totalTestResults: Int?
 )
 
 data class StateResponse(

@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.labs1904.tracker.R
+import com.labs1904.ui.extensions.gone
+import com.labs1904.ui.extensions.showDialogWithDismiss
+import com.labs1904.ui.extensions.visible
 import com.labs1904.ui.views.BaseFragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.home_content.*
 import timber.log.Timber
 
 class HomeFragment : BaseFragment() {
@@ -26,20 +30,12 @@ class HomeFragment : BaseFragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		viewModel.nationwideData.observe(viewLifecycleOwner, Observer {
-			Timber.d("HELLO $it")
-		})
+		home_swipe_layout.setOnRefreshListener {
+			fetchData()
+		}
 
-		compositeDisposable.add(
-			viewModel
-				.fetchData()
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe({
-					Timber.d("viewModel.fetchData() success")
-				}, {
-					Timber.e(it, "viewModel.fetchData() error")
-				})
-		)
+		setViewState(HomeViewState.LOADING)
+		fetchData()
 	}
 
 	override fun onDestroyView() {
@@ -47,7 +43,57 @@ class HomeFragment : BaseFragment() {
 		super.onDestroyView()
 	}
 
+	private fun fetchData() {
+		compositeDisposable.add(
+			viewModel
+				.fetchData()
+				.observeOn(AndroidSchedulers.mainThread())
+				.doFinally { home_swipe_layout.isRefreshing = false }
+				.subscribe({
+					Timber.d("viewModel.fetchData() success")
+
+					setViewState(HomeViewState.SUCCESS, it)
+				}, {
+					Timber.e(it, "viewModel.fetchData() error")
+
+					setViewState(HomeViewState.ERROR)
+				})
+		)
+	}
+
+	private fun setViewState(homeViewState: HomeViewState, homeViewData: HomeViewData? = null) {
+		home_content.gone()
+		home_progress_bar.gone()
+
+		when (homeViewState) {
+			HomeViewState.LOADING -> home_progress_bar.visible()
+			HomeViewState.SUCCESS -> {
+				home_content.visible()
+
+				total_tests_card.value = homeViewData?.totalTestResults
+				total_positive_card.value = homeViewData?.positiveTestResults
+				total_pending_card.value = homeViewData?.pendingTestResults
+				total_negative_card.value = homeViewData?.negativeTestResults
+
+				total_recovered_card.value = homeViewData?.recovered
+				total_deaths_card.value = homeViewData?.deaths
+			}
+			HomeViewState.ERROR -> {
+				showDialogWithDismiss(
+					getString(R.string.network_error),
+					getString(R.string.failed_to_fetch_data)
+				)
+			}
+		}
+	}
+
 	companion object {
 		fun newInstance(): HomeFragment = HomeFragment()
 	}
+}
+
+enum class HomeViewState {
+	LOADING,
+	SUCCESS,
+	ERROR
 }

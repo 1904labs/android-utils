@@ -122,4 +122,22 @@ class NumberUtilsKxTest {
 
 		assertEquals(true, result)
 	}
+
+	@Test
+	fun `format() outputs with commas and no decimals`() {
+		val input = 4343
+
+		val result = input.format()
+
+		assertEquals("4,343", result)
+	}
+
+	@Test
+	fun `format() outputs with commas and decimals`() {
+		val input = 2323999.32
+
+		val result = input.format()
+
+		assertEquals("2,323,999.32", result)
+	}
 }

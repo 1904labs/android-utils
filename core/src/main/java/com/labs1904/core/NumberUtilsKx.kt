@@ -83,3 +83,11 @@ fun Number.formatWholeNumber(): String =
  */
 fun Number?.isNullOrZero(): Boolean =
 	this == null || this.toDouble() == 0.0
+
+/**
+ * Converts this Number into a string using the given [locale].
+ *
+ * @return A string representing this number
+ */
+fun Number.format(locale: Locale = Locale.getDefault()): String =
+	NumberFormat.getNumberInstance(locale).format(this)
