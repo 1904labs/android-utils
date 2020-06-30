@@ -10,4 +10,5 @@
     <string name="not_available">n/a</string>
     <string name="network_error">Network Error</string>
     <string name="failed_to_fetch_data">Failed to fetch data. Please try again later.</string>
+	<string name="covid_19">COVID-19</string>
 </resources>
