@@ -10,6 +10,16 @@
 		android:layout_height="wrap_content"
 		android:clipChildren="false">
 
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/home_image"
+			android:layout_width="0dp"
+			android:layout_height="150dp"
+			android:layout_marginTop="@dimen/margin_standard"
+			app:layout_constraintEnd_toEndOf="@id/end_guide"
+			app:layout_constraintStart_toStartOf="@id/start_guide"
+			app:layout_constraintTop_toTopOf="parent"
+			url="@{viewModel.homeImageURL}" />
+
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/testing_title"
 			android:layout_width="wrap_content"
@@ -21,7 +31,7 @@
 			android:textSize="25sp"
 			android:textStyle="bold"
 			app:layout_constraintStart_toStartOf="@id/start_guide"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toBottomOf="@id/home_image" />
 
 		<com.labs1904.tracker.utils.HomeCardView
 			android:id="@+id/total_tests_card"
