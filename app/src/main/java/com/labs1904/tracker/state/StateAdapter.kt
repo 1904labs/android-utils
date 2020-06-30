@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.labs1904.core.defaultIfNull
 import com.labs1904.tracker.R
 import kotlinx.android.synthetic.main.state_list_item.view.*
 
@@ -32,15 +33,15 @@ class StateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(stateViewData: StateViewData) {
         itemView.context?.let { ctx ->
-            state.text = stateViewData.stateName ?: ctx.getString(R.string.unknown)
+            state.text = stateViewData.stateName.defaultIfNull(ctx.getString(R.string.unknown))
             positiveCases.text =
-                stateViewData.numPositiveCases?.toString() ?: ctx.getString(R.string.not_available)
+                stateViewData.numPositiveCases?.toString().defaultIfNull(ctx.getString(R.string.not_available))
             hospitalized.text =
-                stateViewData.numHospitalized?.toString() ?: ctx.getString(R.string.not_available)
+                stateViewData.numHospitalized?.toString().defaultIfNull(ctx.getString(R.string.not_available))
             recovered.text =
-                stateViewData.numRecovered?.toString() ?: ctx.getString(R.string.not_available)
+                stateViewData.numRecovered?.toString().defaultIfNull(ctx.getString(R.string.not_available))
             deaths.text =
-                stateViewData.numDeaths?.toString() ?: ctx.getString(R.string.not_available)
+                stateViewData.numDeaths?.toString().defaultIfNull(ctx.getString(R.string.not_available))
         }
     }
 }
