@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.state_list_item.view.*
 class StateAdapter : ListAdapter<StateViewData, StateViewHolder>(StateItemDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateViewHolder {
-        return StateViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.state_list_item, parent, false))
+        return StateViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.state_list_item, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: StateViewHolder, position: Int) {
@@ -21,7 +23,7 @@ class StateAdapter : ListAdapter<StateViewData, StateViewHolder>(StateItemDiff()
     }
 }
 
-class StateViewHolder(itemView: View) :  RecyclerView.ViewHolder(itemView) {
+class StateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val state: AppCompatTextView = itemView.state_name
     private val positiveCases: AppCompatTextView = itemView.positive_cases_value
     private val hospitalized: AppCompatTextView = itemView.hospitalized_value
@@ -31,10 +33,14 @@ class StateViewHolder(itemView: View) :  RecyclerView.ViewHolder(itemView) {
     fun bind(stateViewData: StateViewData) {
         itemView.context?.let { ctx ->
             state.text = stateViewData.stateName ?: ctx.getString(R.string.unknown)
-            positiveCases.text = stateViewData.numPositiveCases?.toString() ?: ctx.getString(R.string.not_available)
-            hospitalized.text = stateViewData.numHospitalized?.toString() ?: ctx.getString(R.string.not_available)
-            recovered.text = stateViewData.numRecovered?.toString() ?: ctx.getString(R.string.not_available)
-            deaths.text = stateViewData.numDeaths?.toString() ?: ctx.getString(R.string.not_available)
+            positiveCases.text =
+                stateViewData.numPositiveCases?.toString() ?: ctx.getString(R.string.not_available)
+            hospitalized.text =
+                stateViewData.numHospitalized?.toString() ?: ctx.getString(R.string.not_available)
+            recovered.text =
+                stateViewData.numRecovered?.toString() ?: ctx.getString(R.string.not_available)
+            deaths.text =
+                stateViewData.numDeaths?.toString() ?: ctx.getString(R.string.not_available)
         }
     }
 }

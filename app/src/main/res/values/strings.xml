@@ -7,5 +7,7 @@
     <string name="recovered">Recovered:</string>
     <string name="deaths">Deaths:</string>
     <string name="unknown">Unknown</string>
-    <string name="not_available">N/A</string>
+    <string name="not_available">n/a</string>
+    <string name="network_error">Network Error</string>
+    <string name="failed_to_fetch_data">Failed to fetch data. Please try again later.</string>
 </resources>

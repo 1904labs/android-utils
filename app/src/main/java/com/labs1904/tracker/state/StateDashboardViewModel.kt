@@ -19,15 +19,17 @@ class StateDashboardViewModel(
             .subscribeOn(scheduler)
             .observeOn(scheduler)
             .map { response ->
-                response.map { stateData ->
-                    StateViewData(
-                        STATE_NAME_MAP[stateData.state],
-                        stateData.positive,
-                        stateData.recovered,
-                        stateData.death,
-                        stateData.hospitalizedCumulative
-                    )
-                }
+                response
+                    .filter { STATE_NAME_MAP.containsKey(it.state) }
+                    .map { stateData ->
+                        StateViewData(
+                            STATE_NAME_MAP[stateData.state],
+                            stateData.positive,
+                            stateData.recovered,
+                            stateData.death,
+                            stateData.hospitalizedCumulative
+                        )
+                    }
             }
 }
 
