@@ -1,6 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.labs1904.tracker">
-    <application>
-        <activity android:name="com.labs1904.test_utils.TestActivity"/>
-    </application>
-</manifest>
