@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.labs1904.core.defaultIfNull
 import com.labs1904.core.format
 import com.labs1904.core.livedata.KotlinLiveData
+import com.labs1904.tracker.R
 import com.labs1904.tracker.covid.CovidFactory
 import com.labs1904.tracker.covid.CovidRepo
 import com.labs1904.tracker.covid.NationwideResponse
@@ -18,6 +19,8 @@ class HomeViewModel(
 ) : ViewModel() {
 
 	val homeImageURL = KotlinLiveData("https://s7d2.scene7.com/is/image/TWCNews/coronavirus_gen_jpg")
+	val placeholderDrawable = KotlinLiveData(R.drawable.ic_launcher_foreground)
+	val errorDrawable = KotlinLiveData(R.drawable.ic_launcher_foreground)
 
 	fun fetchData(): Single<HomeViewData> =
 		covidRepository
