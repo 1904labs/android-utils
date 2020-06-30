@@ -1,5 +1,7 @@
 package com.labs1904.tracker
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -50,6 +52,13 @@ class MainActivity : AppCompatActivity() {
 		}.also {
 			transaction.add(R.id.main_content, it, fragmentToCreate.name)
 		}
+
+	companion object {
+
+		fun launch(activity: Activity) {
+			activity.startActivity(Intent(activity, MainActivity::class.java))
+		}
+	}
 }
 
 enum class BottomNavFragments {
