@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.labs1904.tracker"
-		minSdkVersion build_versions.min_sdk
+		minSdkVersion build_versions.app_min_sdk
 		targetSdkVersion build_versions.compile_sdk
 		multiDexEnabled true
         versionCode 1
@@ -74,4 +74,6 @@ dependencies {
 	androidTestImplementation "androidx.test.ext:junit:$versions.androidx_junit"
 	androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_espresso_core"
 	androidTestImplementation "androidx.test:core:$versions.androidx_test_core"
+	androidTestImplementation "androidx.test:runner:$versions.androidx_test_runner"
+	androidTestImplementation "androidx.test:rules:$versions.androidx_test_rules"
 }
