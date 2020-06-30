@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">COVID Dashboard</string>
+    <string name="app_name">C19 Dash</string>
     <string name="home">Home</string>
     <string name="state_dashboard">State Dashboard</string>
     <string name="positive_cases">Positive Cases:</string>

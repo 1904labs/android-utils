@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.labs1904.tracker.R
 import com.labs1904.ui.extensions.addItemSeparator
+import com.labs1904.ui.extensions.gone
 import com.labs1904.ui.extensions.showDialogWithDismiss
+import com.labs1904.ui.extensions.visible
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_state_dashboard.*
@@ -63,16 +64,16 @@ class StateDashboardFragment : Fragment() {
         viewState: StateDashboardViewState,
         viewData: List<StateViewData>? = null
     ) {
-        state_dashboard_progress_bar.isVisible = false
-        state_recycler_view.isVisible = false
+        state_dashboard_progress_bar.gone()
+        state_recycler_view.gone()
 
         when (viewState) {
             StateDashboardViewState.SUCCESS -> {
                 adapter.submitList(viewData)
-                state_recycler_view.isVisible = true
+                state_recycler_view.visible()
             }
             StateDashboardViewState.LOADING -> {
-                state_dashboard_progress_bar.isVisible = true
+                state_dashboard_progress_bar.visible()
             }
             StateDashboardViewState.ERROR -> {
                 showDialogWithDismiss(
