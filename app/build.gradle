@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 	compileSdkVersion build_versions.compile_sdk
@@ -14,7 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
 		vectorDrawables.useSupportLibrary = true
-    }
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -57,4 +59,15 @@ dependencies {
 
 	implementation project(":ui")
 	implementation project(":core")
+	implementation project(":lint")
+
+	testImplementation project(":test-utils")
+	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+	testImplementation "junit:junit:$versions.junit"
+
+	androidTestImplementation project(":test-utils")
+	androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+	androidTestImplementation "androidx.test.ext:junit:$versions.androidx_junit"
+	androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_espresso_core"
+	androidTestImplementation "androidx.test:core:$versions.androidx_test_core"
 }
