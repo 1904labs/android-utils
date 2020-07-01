@@ -68,6 +68,9 @@ dependencies {
 	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 	testImplementation "junit:junit:$versions.junit"
 
+	androidTestImplementation("com.schibsted.spain:barista:$versions.barista") {
+		exclude group: 'org.jetbrains.kotlin'
+	}
 	androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 	androidTestImplementation "androidx.test.ext:junit:$versions.androidx_junit"
 	androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_espresso_core"

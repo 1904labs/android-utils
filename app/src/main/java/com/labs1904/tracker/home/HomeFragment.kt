@@ -15,6 +15,7 @@ import com.labs1904.ui.views.BaseFragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.home_content.*
 import timber.log.Timber
 
 class HomeFragment : BaseFragment() {

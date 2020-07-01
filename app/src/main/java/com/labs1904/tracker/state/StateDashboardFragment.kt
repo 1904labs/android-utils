@@ -39,6 +39,7 @@ class StateDashboardFragment : Fragment() {
             fetchData()
         }
 
+        setViewState(StateDashboardViewState.LOADING)
         fetchData()
     }
 
@@ -52,7 +53,6 @@ class StateDashboardFragment : Fragment() {
             viewModel
                 .fetchCurrentValuesByState()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { setViewState(StateDashboardViewState.LOADING) }
                 .doFinally { state_dashboard_swipe_refresh.isRefreshing = false }
                 .subscribe({ setViewState(StateDashboardViewState.SUCCESS, it) },
                     { setViewState(StateDashboardViewState.ERROR) }

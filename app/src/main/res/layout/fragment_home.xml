@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.labs1904.tracker.home.HomeViewModel" />
@@ -18,133 +19,9 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/home_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/home_image"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-						android:scaleType="centerCrop"
-                        app:errorDrawable="@{viewModel.errorDrawable}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:placeholderDrawable="@{viewModel.placeholderDrawable}"
-                        app:url="@{viewModel.homeImageURL}" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/testing_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_standard"
-                        android:fontFamily="sans-serif"
-                        android:text="@string/testing"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
-                        app:layout_constraintTop_toBottomOf="@id/home_image" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_tests_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_standard"
-                        android:layout_marginEnd="@dimen/margin_standard"
-                        app:layout_constraintEnd_toStartOf="@id/total_positive_card"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
-                        app:layout_constraintTop_toBottomOf="@id/testing_title"
-                        app:title="@string/total_test_results" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_positive_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="@id/end_guide"
-                        app:layout_constraintStart_toEndOf="@id/total_tests_card"
-                        app:layout_constraintTop_toTopOf="@id/total_tests_card"
-                        app:title="@string/positive_tests" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_pending_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_standard"
-                        app:layout_constraintEnd_toEndOf="@id/total_tests_card"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
-                        app:layout_constraintTop_toBottomOf="@id/total_tests_card"
-                        app:title="@string/pending_tests" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_negative_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="@id/end_guide"
-                        app:layout_constraintStart_toStartOf="@id/total_positive_card"
-                        app:layout_constraintTop_toTopOf="@id/total_pending_card"
-                        app:title="@string/negative_tests" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/outcomes_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_standard"
-                        android:fontFamily="sans-serif"
-                        android:text="@string/outcomes"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
-                        app:layout_constraintTop_toBottomOf="@id/total_pending_card" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_recovered_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_standard"
-                        android:layout_marginEnd="@dimen/margin_standard"
-                        android:layout_marginBottom="@dimen/margin_standard"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/total_deaths_card"
-                        app:layout_constraintStart_toStartOf="@id/start_guide"
-                        app:layout_constraintTop_toBottomOf="@id/outcomes_title"
-                        app:title="@string/recovered_home" />
-
-                    <com.labs1904.tracker.utils.HomeCardView
-                        android:id="@+id/total_deaths_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_standard"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/end_guide"
-                        app:layout_constraintStart_toEndOf="@id/total_recovered_card"
-                        app:layout_constraintTop_toTopOf="@id/total_recovered_card"
-                        app:title="@string/deaths_home" />
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/start_guide"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_begin="@dimen/margin_standard" />
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/end_guide"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_end="@dimen/margin_standard" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.core.widget.NestedScrollView>
+            <include
+                layout="@layout/home_content"
+                app:viewModel="@{viewModel}" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
