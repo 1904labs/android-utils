@@ -7,6 +7,8 @@ import com.labs1904.test_utils.data.randomInt
 import com.labs1904.test_utils.data.randomString
 import com.labs1904.test_utils.espresso.assertions.assertSwipeRefreshLayoutIsNotRefreshing
 import com.labs1904.test_utils.espresso.assertions.assertSwipeRefreshLayoutIsRefreshing
+import com.labs1904.test_utils.espresso.assertions.assertViewEffectivelyGone
+import com.labs1904.test_utils.espresso.assertions.assertViewEffectivelyVisible
 import com.labs1904.test_utils.extensions.launchFragment
 import com.labs1904.tracker.R
 import com.labs1904.tracker.covid.CovidFactory
@@ -20,6 +22,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.lang.RuntimeException
 
+// TODO: Finish and get these tests to work
 class StateDashboardFragmentTest {
 
     @get:Rule
@@ -33,20 +36,51 @@ class StateDashboardFragmentTest {
 
     @Test
     fun screen_error() {
+        setUpRepo(Single.error(RuntimeException()))
+
         activityRule.launchFragment(StateDashboardFragment(), null)
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
 
     }
 
     @Test
     fun screen_loading() {
+        lateinit var singleEmitter: SingleEmitter<List<StateResponse>>
+
+        setUpRepo(Single.create { emitter -> singleEmitter = emitter })
+
         activityRule.launchFragment(StateDashboardFragment(), null)
 
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+
+        assertViewEffectivelyVisible(R.id.state_dashboard_progress_bar)
+        assertViewEffectivelyGone(R.id.state_recycler_view)
+
+        singleEmitter.onError(RuntimeException())
+
+        assertViewEffectivelyGone(R.id.state_dashboard_progress_bar)
     }
 
     @Test
     fun pull_to_refresh_stops_on_error() {
+        lateinit var singleEmitter: SingleEmitter<List<StateResponse>>
+
+        setUpRepo(Single.error(RuntimeException()))
+
         activityRule.launchFragment(StateDashboardFragment(), null)
 
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+
+        setUpRepo(Single.create { emitter -> singleEmitter = emitter })
+
+        refresh(R.id.state_dashboard_swipe_refresh)
+
+        assertSwipeRefreshLayoutIsRefreshing(R.id.state_dashboard_swipe_refresh)
+
+        singleEmitter.onError(RuntimeException())
+
+        assertSwipeRefreshLayoutIsNotRefreshing(R.id.state_dashboard_swipe_refresh)
     }
 
     @Test
