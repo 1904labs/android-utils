@@ -105,7 +105,7 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, successResponse)
 
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
 		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(updatedTokens))
 
 		val testObject = RefreshInterceptor(tokenData, tokenApi)
@@ -153,7 +153,7 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, failedResponse)
 
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
 		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(updatedTokens))
 
 		val testObject = RefreshInterceptor(tokenData, tokenApi)
@@ -197,8 +197,8 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, successResponse)
 
-		whenever(currentTokens.accessToken).thenReturn(originalAccessToken)
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
+		whenever(currentTokens.getAccessToken()).thenReturn(originalAccessToken)
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
 
 		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(currentTokens))
 		whenever(tokenData.insertTokens(updatedTokens)).thenReturn(Completable.complete())

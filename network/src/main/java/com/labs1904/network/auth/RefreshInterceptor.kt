@@ -21,7 +21,7 @@ class RefreshInterceptor<T : Tokens>(
 	private val tokenData: TokenDataSource<T>,
 	private val tokenApi: TokenApi<T>,
 	private val tokenHeaderName: String = AUTHORIZATION,
-	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.accessToken}" },
+	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.getAccessToken()}" },
 	private val logoutSubject: PublishSubject<Unit> = PublishSubject.create(),
 	val logoutObservable: Observable<Unit> = logoutSubject
 ) : Interceptor {

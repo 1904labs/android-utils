@@ -50,7 +50,7 @@ class AuthInterceptorTest {
 		whenever(chain.proceed(any())).thenReturn(mock())
 
 		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(newTokens))
-		whenever(newTokens.accessToken).thenReturn(accessToken)
+		whenever(newTokens.getAccessToken()).thenReturn(accessToken)
 
 		AuthInterceptor(tokenData).intercept(chain)
 

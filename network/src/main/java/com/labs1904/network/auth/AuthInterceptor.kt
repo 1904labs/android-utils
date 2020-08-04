@@ -13,7 +13,7 @@ import okhttp3.Response
 class AuthInterceptor(
 	private val tokenData: TokenDataSource<*>,
 	private val tokenHeaderName: String = AUTHORIZATION,
-	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.accessToken}" }
+	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.getAccessToken()}" }
 ) : Interceptor {
 
 	override fun intercept(chain: Interceptor.Chain): Response {
