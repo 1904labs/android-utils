@@ -34,7 +34,7 @@ class RefreshInterceptor<T : Tokens>(
 
 				synchronized(this) {
 					try {
-						val currentTokens: Tokens? = tokenData.currentTokens().blockingGet()
+						val currentTokens: Tokens? = tokenData.currentTokens()
 
 						newRequest = when {
 							currentTokens == null -> null
@@ -44,7 +44,7 @@ class RefreshInterceptor<T : Tokens>(
 									.refreshToken(currentTokens)
 									.blockingGet()
 									?.let {
-										tokenData.insertTokens(it).blockingAwait()
+										tokenData.insertTokens(it)
 										createRequestWithNewToken(chain, it)
 									}
 							}

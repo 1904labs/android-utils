@@ -7,6 +7,6 @@ package com.labs1904.network.auth
  * to call {@link com.labs1904.network.auth.TokenApi#refreshToken} to get a new accessToken.
  */
 interface Tokens {
-	fun getAccessToken(): String?
+	fun getAccessToken(): String
 	fun getRefreshToken(): String?
 }

@@ -20,7 +20,7 @@ class AuthInterceptor(
 		var request = chain.request()
 
 		if (request.header(tokenHeaderName) == null) {
-			tokenData.currentTokens().blockingGet()?.let {
+			tokenData.currentTokens()?.let {
 				request = request.newBuilder().addHeader(
 					tokenHeaderName,
 					tokenValueFormatter.invoke(it)

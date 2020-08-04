@@ -3,7 +3,6 @@ package com.labs1904.network.auth
 import com.labs1904.network.AUTHORIZATION
 import com.labs1904.network.BEARER
 import com.nhaarman.mockitokotlin2.*
-import io.reactivex.rxjava3.core.Maybe
 import okhttp3.Interceptor
 import okhttp3.Request
 import org.junit.Assert.assertEquals
@@ -49,7 +48,7 @@ class AuthInterceptorTest {
 		whenever(chain.request()).thenReturn(originalRequest)
 		whenever(chain.proceed(any())).thenReturn(mock())
 
-		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(newTokens))
+		whenever(tokenData.currentTokens()).thenReturn(newTokens)
 		whenever(newTokens.getAccessToken()).thenReturn(accessToken)
 
 		AuthInterceptor(tokenData).intercept(chain)
