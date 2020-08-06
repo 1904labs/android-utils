@@ -4,8 +4,6 @@ import com.labs1904.network.AUTHORIZATION
 import com.labs1904.network.BEARER
 import com.labs1904.network.STATUS_CODE_401
 import com.nhaarman.mockitokotlin2.*
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import okhttp3.Interceptor
 import okhttp3.Protocol
@@ -63,7 +61,7 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(request)).thenReturn(originalResponse)
 
-		whenever(tokenData.currentTokens()).thenReturn(Maybe.empty())
+		whenever(tokenData.currentTokens()).thenReturn(null)
 
 		val testObject = RefreshInterceptor(tokenData, tokenApi)
 		val testObserver = testObject.logoutObservable.test()
@@ -105,8 +103,8 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, successResponse)
 
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
-		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(updatedTokens))
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
+		whenever(tokenData.currentTokens()).thenReturn(updatedTokens)
 
 		val testObject = RefreshInterceptor(tokenData, tokenApi)
 		val testObserver = testObject.logoutObservable.test()
@@ -153,8 +151,8 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, failedResponse)
 
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
-		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(updatedTokens))
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
+		whenever(tokenData.currentTokens()).thenReturn(updatedTokens)
 
 		val testObject = RefreshInterceptor(tokenData, tokenApi)
 		val testObserver = testObject.logoutObservable.test()
@@ -197,11 +195,10 @@ class RefreshInterceptorTest {
 		whenever(chain.request()).thenReturn(request)
 		whenever(chain.proceed(any())).thenReturn(originalResponse, successResponse)
 
-		whenever(currentTokens.accessToken).thenReturn(originalAccessToken)
-		whenever(updatedTokens.accessToken).thenReturn(updatedAccessToken)
+		whenever(currentTokens.getAccessToken()).thenReturn(originalAccessToken)
+		whenever(updatedTokens.getAccessToken()).thenReturn(updatedAccessToken)
 
-		whenever(tokenData.currentTokens()).thenReturn(Maybe.just(currentTokens))
-		whenever(tokenData.insertTokens(updatedTokens)).thenReturn(Completable.complete())
+		whenever(tokenData.currentTokens()).thenReturn(currentTokens)
 
 		whenever(tokenApi.refreshToken(currentTokens)).thenReturn(Single.just(updatedTokens))
 

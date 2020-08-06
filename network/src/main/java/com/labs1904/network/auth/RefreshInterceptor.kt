@@ -20,6 +20,8 @@ import okhttp3.Response
 class RefreshInterceptor<T : Tokens>(
 	private val tokenData: TokenDataSource<T>,
 	private val tokenApi: TokenApi<T>,
+	private val tokenHeaderName: String = AUTHORIZATION,
+	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.getAccessToken()}" },
 	private val logoutSubject: PublishSubject<Unit> = PublishSubject.create(),
 	val logoutObservable: Observable<Unit> = logoutSubject
 ) : Interceptor {
@@ -27,22 +29,22 @@ class RefreshInterceptor<T : Tokens>(
 	override fun intercept(chain: Interceptor.Chain): Response =
 		chain.proceed(chain.request()).let { originalResponse ->
 			if (originalResponse.code == STATUS_CODE_401) {
-				val originalHeader = originalResponse.request.header(AUTHORIZATION)
+				val originalHeader = originalResponse.request.header(tokenHeaderName)
 				var newRequest: Request? = null
 
 				synchronized(this) {
 					try {
-						val currentTokens: Tokens? = tokenData.currentTokens().blockingGet()
+						val currentTokens: Tokens? = tokenData.currentTokens()
 
 						newRequest = when {
 							currentTokens == null -> null
-							originalHeader != "$BEARER ${currentTokens.accessToken}" -> createRequestWithNewToken(chain, currentTokens)
+							originalHeader != tokenValueFormatter.invoke(currentTokens) -> createRequestWithNewToken(chain, currentTokens)
 							else -> {
 								tokenApi
 									.refreshToken(currentTokens)
 									.blockingGet()
 									?.let {
-										tokenData.insertTokens(it).blockingAwait()
+										tokenData.insertTokens(it)
 										createRequestWithNewToken(chain, it)
 									}
 							}
@@ -72,7 +74,7 @@ class RefreshInterceptor<T : Tokens>(
 	 * @return A request with the new authentication token attached
 	 */
 	private fun createRequestWithNewToken(chain: Interceptor.Chain, newTokens: Tokens): Request =
-		chain.request().newBuilder().header(AUTHORIZATION, "$BEARER ${newTokens.accessToken}").build()
+		chain.request().newBuilder().header(tokenHeaderName, tokenValueFormatter.invoke(newTokens)).build()
 
 	/**
 	 * Executes [request] and returns its Response.
