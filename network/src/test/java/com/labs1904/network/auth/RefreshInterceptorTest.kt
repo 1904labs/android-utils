@@ -69,7 +69,7 @@ class RefreshInterceptorTest {
 		val actualResponse = testObject.intercept(chain)
 
 		testObserver.apply {
-			assertValue(Unit)
+			assertValue("$BEARER 1234556")
 			assertNotComplete()
 			assertNoErrors()
 		}
@@ -160,7 +160,7 @@ class RefreshInterceptorTest {
 		val actualResponse = testObject.intercept(chain)
 
 		testObserver.apply {
-			assertValue(Unit)
+			assertValue("$BEARER $updatedAccessToken")
 			assertNotComplete()
 			assertNoErrors()
 		}
