@@ -20,7 +20,7 @@ import okhttp3.Response
  */
 class RefreshInterceptor<T : Tokens>(
 	private val tokenData: TokenDataSource<T>,
-	private val tokenApi: TokenApi<T>,
+	private val tokenApi: TokenApi<T>? = null,
 	private val tokenHeaderName: String = AUTHORIZATION,
 	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.getAccessToken()}" },
 	private val logoutSubject: PublishSubject<String> = PublishSubject.create(),
@@ -42,8 +42,8 @@ class RefreshInterceptor<T : Tokens>(
 							originalHeader != tokenValueFormatter.invoke(currentTokens) -> createRequestWithNewToken(chain, currentTokens)
 							else -> {
 								tokenApi
-									.refreshToken(currentTokens)
-									.blockingGet()
+									?.refreshToken(currentTokens)
+									?.blockingGet()
 									?.let {
 										tokenData.insertTokens(it)
 										createRequestWithNewToken(chain, it)
