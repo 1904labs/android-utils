@@ -15,15 +15,16 @@ import okhttp3.Response
  * refreshes authentication tokens. Upon receiving a 401 error code, this interceptor calls the
  * {@link com.labs1904.network.auth.TokenApi TokenApi} to refresh the token. After successfully refreshing the token,
  * it re-attempts the original request using the new token. If the refresh fails, a logout event is emitted
- * through [logoutObservable].
+ * through [logoutObservable]. The [logoutObservable] emits the token header used for the failed request. If
+ * the token header does not exist, an empty string is emitted.
  */
 class RefreshInterceptor<T : Tokens>(
 	private val tokenData: TokenDataSource<T>,
 	private val tokenApi: TokenApi<T>,
 	private val tokenHeaderName: String = AUTHORIZATION,
 	private val tokenValueFormatter: (Tokens) -> String = { "$BEARER ${it.getAccessToken()}" },
-	private val logoutSubject: PublishSubject<Unit> = PublishSubject.create(),
-	val logoutObservable: Observable<Unit> = logoutSubject
+	private val logoutSubject: PublishSubject<String> = PublishSubject.create(),
+	val logoutObservable: Observable<String> = logoutSubject
 ) : Interceptor {
 
 	override fun intercept(chain: Interceptor.Chain): Response =
@@ -57,7 +58,7 @@ class RefreshInterceptor<T : Tokens>(
 				newRequest?.let {
 					executeRequest(chain, it, originalResponse)
 				} ?: run {
-					logoutSubject.onNext(Unit)
+					logoutSubject.onNext(originalHeader ?: "")
 					originalResponse
 				}
 			} else {
@@ -87,7 +88,7 @@ class RefreshInterceptor<T : Tokens>(
 	 */
 	private fun executeRequest(chain: Interceptor.Chain, request: Request, originalResponse: Response): Response =
 		chain.proceed(request).takeIf { it.code != STATUS_CODE_401 } ?: run {
-			logoutSubject.onNext(Unit)
+			logoutSubject.onNext(request.header(tokenHeaderName) ?: "")
 			originalResponse
 		}
 
