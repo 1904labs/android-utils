@@ -15,7 +15,8 @@ import okhttp3.Response
  * refreshes authentication tokens. Upon receiving a 401 error code, this interceptor calls the
  * {@link com.labs1904.network.auth.TokenApi TokenApi} to refresh the token. After successfully refreshing the token,
  * it re-attempts the original request using the new token. If the refresh fails, a logout event is emitted
- * through [logoutObservable]. The [logoutObservable] emits the token header used for the failed request.
+ * through [logoutObservable]. The [logoutObservable] emits the token header used for the failed request. If
+ * the token header does not exist, an empty string is emitted.
  */
 class RefreshInterceptor<T : Tokens>(
 	private val tokenData: TokenDataSource<T>,
