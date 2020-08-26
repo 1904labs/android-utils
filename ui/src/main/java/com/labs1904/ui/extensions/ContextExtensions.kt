@@ -1,6 +1,8 @@
 package com.labs1904.ui.extensions
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
@@ -50,3 +52,28 @@ fun Context.hasAudioPermission(): Boolean = ContextCompat.checkSelfPermission(
     this,
     android.Manifest.permission.RECORD_AUDIO
 ) == androidx.core.content.PermissionChecker.PERMISSION_GRANTED
+
+/**
+ * Shows a "chooser" that allows the user to pick any email client currently on their device to send an email.
+ * This function can optionally pre-populate the recipients, subject, and body of the email.
+ *
+ * @param chooserTitle Title shown in the chooser.
+ * @param recipients (defaults to null) Optional list of recipients to send to.
+ * @param subject (defaults to null) Optional subject of the email.
+ * @param body (defaults to null) Optional body of the email.
+ */
+fun Context.openEmailClient(
+    chooserTitle: String,
+    recipients: List<String>? = null,
+    subject: String? = null,
+    body: String? = null
+) {
+    val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+        data = Uri.parse("mailto:")
+        putExtra(Intent.EXTRA_EMAIL, recipients?.toTypedArray())
+        putExtra(Intent.EXTRA_SUBJECT, subject)
+        putExtra(Intent.EXTRA_TEXT, body)
+    }
+
+    ContextCompat.startActivity(this, Intent.createChooser(emailIntent, chooserTitle), null)
+}

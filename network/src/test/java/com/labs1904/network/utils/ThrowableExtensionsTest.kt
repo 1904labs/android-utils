@@ -42,4 +42,37 @@ class ThrowableExtensionsTest {
 
         assertTrue(testObject.is401Unauthorized())
     }
+
+    @Test
+    fun `is400BadRequest returns false when it is not an HttpException`() {
+        val testObject = RuntimeException()
+
+        assertFalse(testObject.is400BadRequest())
+    }
+
+    @Test
+    fun `is400BadRequest returns false when HttpException but not a 400`() {
+        val response: Response<String> = Response.error(
+            403,
+            "".toResponseBody(
+                "application/json".toMediaTypeOrNull()
+            )
+        )
+        val testObject = HttpException(response)
+
+        assertFalse(testObject.is400BadRequest())
+    }
+
+    @Test
+    fun `is400BadRequest returns true when HttpException with a 400 code`() {
+        val response: Response<String> = Response.error(
+            400,
+            "".toResponseBody(
+                "application/json".toMediaTypeOrNull()
+            )
+        )
+        val testObject = HttpException(response)
+
+        assertTrue(testObject.is400BadRequest())
+    }
 }

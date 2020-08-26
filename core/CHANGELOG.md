@@ -15,11 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `DisposableUtilsKx` - Extension functions for RxJava's `Disposable` type
 - Various extension functions for built-in types:
   - `BooleanUtilsKx`
+  - `ByteArrayUtilsKx`
   - `CollectionUtilsKx`
   - `DateUtilsKx`
   - `DoubleUtilsKx`
   - `FloatUtilsKx`
+  - `LiveDataUtilsKx`
   - `NumberUtilsKx`
   - `StringUtilsKx`
+  - `ThrowableUtilsKx`
   - `UtilsKx`
-  - `LiveDataUtilsKx`
+  - `ZoneDateTimeUtilsKx`
+

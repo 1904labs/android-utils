@@ -16,3 +16,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `RoomCookieCache`: A [Dao](https://developer.android.com/reference/androidx/room/Dao) for the AndroidX Room library that stores persistent cookies in a SQLite database
 - `is401Unauthorized()`
     - Any easy way to check if a Throwable is a Retrofit HttpException with a 401 code.
+- `is400BadRequest()`
+        - Any easy way to check if a Throwable is a Retrofit HttpException with a 400 code.

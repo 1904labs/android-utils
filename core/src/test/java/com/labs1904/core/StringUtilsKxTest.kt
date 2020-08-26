@@ -1,7 +1,8 @@
 package com.labs1904.core
 
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
+import java.time.ZoneId
 import java.util.*
 
 class StringUtilsKxTest {
@@ -35,8 +36,8 @@ class StringUtilsKxTest {
 
 	@Test
 	fun `extractInitials() behaves correctly`() {
-		assertEquals(null, "".extractInitials())
-		assertEquals(null, " ".extractInitials())
+		assertNull("".extractInitials())
+		assertNull(" ".extractInitials())
 		assertEquals("J", "John".extractInitials())
 		assertEquals("JD", "John doe".extractInitials())
 		assertEquals("JH", "John david Ham".extractInitials())
@@ -48,7 +49,7 @@ class StringUtilsKxTest {
 
 		val result = input.decodeBase64ToByteArray()
 
-		assertEquals(null, result)
+		assertNull(result)
 	}
 
 	@Test
@@ -57,7 +58,7 @@ class StringUtilsKxTest {
 
 		val result = input.validLength(maxLength = 3)
 
-		assertEquals(false, result)
+		assertFalse(result)
 	}
 
 	@Test
@@ -66,7 +67,7 @@ class StringUtilsKxTest {
 
 		val result = input.validLength(3, 7)
 
-		assertEquals(false, result)
+		assertFalse(result)
 	}
 
 	@Test
@@ -75,14 +76,14 @@ class StringUtilsKxTest {
 
 		val result = input.validLength(maxLength = 9)
 
-		assertEquals(true, result)
+		assertTrue(result)
 	}
 
 	@Test
 	fun `parseAsDate() returns null on exception`() {
 		val result = "343".parseAsDate("MM-d-YYYY")
 
-		assertEquals(null, result)
+		assertNull(result)
 	}
 
 	@Test
@@ -127,14 +128,60 @@ class StringUtilsKxTest {
 	@Test
 	fun `isValidEmail() null returns false`() {
 		val input: String? = null
-		assertEquals(false, input.isValidEmail())
+		assertFalse(input.isValidEmail())
 	}
 
 	@Test
 	fun `parseAsBoolean() extension function`() {
-		assertEquals(true, " y ".parseAsBoolean())
-		assertEquals(true, "trUE".parseAsBoolean())
-		assertEquals(false, "".parseAsBoolean())
-		assertEquals(false, "n".parseAsBoolean())
+		assertTrue(" y ".parseAsBoolean())
+		assertTrue("trUE".parseAsBoolean())
+		assertTrue(" yEs    ".parseAsBoolean())
+		assertFalse("".parseAsBoolean())
+		assertFalse("n".parseAsBoolean())
+	}
+
+	@Test
+	fun `toBase64String() returns null on exception`() {
+		val input = ""
+
+		val result = input.toBase64String()
+
+		assertNull(result)
+	}
+
+	@Test
+	fun `decodeBase64() returns null on exception`() {
+		val input = ""
+
+		val result = input.decodeBase64()
+
+		assertNull(result)
+	}
+
+	@Test
+	fun `toZoneId returns system default on exception`() {
+		val input = "test"
+
+		val result = input.toZoneId()
+
+		assertEquals(ZoneId.systemDefault(), result)
+	}
+
+	@Test
+	fun `toZoneId returns ZoneId from a short id`() {
+		val input = "ACT"
+
+		val result = input.toZoneId()
+
+		assertEquals("Australia/Darwin", result.id)
+	}
+
+	@Test
+	fun `toZoneId returns ZoneId from a long id`() {
+		val input = "Australia/Darwin"
+
+		val result = input.toZoneId()
+
+		assertEquals("Australia/Darwin", result.id)
 	}
 }

@@ -3,6 +3,7 @@ package com.labs1904.core
 import android.util.Base64
 import android.util.Patterns
 import java.text.SimpleDateFormat
+import java.time.ZoneId
 import java.util.*
 
 private val whitespace: Regex by lazy { "\\s+".toRegex() }
@@ -19,16 +20,16 @@ private val whitespace: Regex by lazy { "\\s+".toRegex() }
  * @return This String, with its first n characters replaced with [maskChar]
  */
 fun String.maskFirstNChars(numMaskedChars: Int, maskChar: Char = '*'): String =
-	if (numMaskedChars <= 0) {
-		this
-	} else {
-		maskChar.toString().repeat(numMaskedChars).let { maskedSection ->
-			when {
-				this.length <= numMaskedChars -> maskedSection
-				else -> this.replaceRange(0 until numMaskedChars, maskedSection)
-			}
-		}
-	}
+    if (numMaskedChars <= 0) {
+        this
+    } else {
+        maskChar.toString().repeat(numMaskedChars).let { maskedSection ->
+            when {
+                this.length <= numMaskedChars -> maskedSection
+                else -> this.replaceRange(0 until numMaskedChars, maskedSection)
+            }
+        }
+    }
 
 /**
  * Given this String represents a person's name, this function attempts to extract their initials.
@@ -45,12 +46,13 @@ fun String.maskFirstNChars(numMaskedChars: Int, maskChar: Char = '*'): String =
  * @return A String containing the initials, or null if the String is empty or only contains whitespace
  */
 fun String.extractInitials(locale: Locale = Locale.getDefault()): String? =
-	this.trim().split(whitespace).mapNotNull { it.firstOrNull() }.takeIf { it.isNotEmpty() }?.let { splitString ->
-		when (splitString.size) {
-			1 -> splitString.first().toString()
-			else -> "${splitString.first()}${splitString.last()}"
-		}
-	}?.toUpperCase(locale)
+    this.trim().split(whitespace).mapNotNull { it.firstOrNull() }.takeIf { it.isNotEmpty() }
+        ?.let { splitString ->
+            when (splitString.size) {
+				1 -> splitString.first().toString()
+                else -> "${splitString.first()}${splitString.last()}"
+            }
+        }?.toUpperCase(locale)
 
 /**
  * Decodes this Base64 String into a ByteArray.
@@ -59,11 +61,11 @@ fun String.extractInitials(locale: Locale = Locale.getDefault()): String? =
  * @return A ByteArray of the decoded data, or null if an exception occurred.
  */
 fun String.decodeBase64ToByteArray(flags: Int = Base64.DEFAULT): ByteArray? =
-	try {
-		Base64.decode(this, flags)
-	} catch (e: Exception) {
-		null
-	}
+    try {
+        Base64.decode(this, flags)
+    } catch (e: Exception) {
+        null
+    }
 
 /**
  * Checks whether this String is a valid length.
@@ -72,7 +74,8 @@ fun String.decodeBase64ToByteArray(flags: Int = Base64.DEFAULT): ByteArray? =
  * @param maxLength The maximum length this String can be before becoming invalid
  * @return true if this String's length is greater than or equal to [minLength] and less than or equal to [maxLength], false otherwise.
  */
-fun String.validLength(minLength: Int = 0, maxLength: Int): Boolean = this.length in minLength..maxLength
+fun String.validLength(minLength: Int = 0, maxLength: Int): Boolean =
+    this.length in minLength..maxLength
 
 /**
  * Parses this String as a Date using the given [datePattern].
@@ -82,9 +85,11 @@ fun String.validLength(minLength: Int = 0, maxLength: Int): Boolean = this.lengt
  * @return The parsed Date, or null if an error occurred
  */
 fun String.parseAsDate(datePattern: String, locale: Locale = Locale.getDefault()): Date? =
-	try {
-		SimpleDateFormat(datePattern, locale).parse(this)
-	} catch (e: Exception) { null }
+    try {
+        SimpleDateFormat(datePattern, locale).parse(this)
+    } catch (e: Exception) {
+        null
+    }
 
 /**
  * Given this String represents a person's name, convert the name to its possessive form.
@@ -92,10 +97,10 @@ fun String.parseAsDate(datePattern: String, locale: Locale = Locale.getDefault()
  * @return the possessive form of this String
  */
 fun String.toPossessiveName(): String =
-	if (this.endsWith('s', ignoreCase = true))
-		"$this'"
-	else
-		"$this's"
+    if (this.endsWith('s', ignoreCase = true))
+        "$this'"
+    else
+        "$this's"
 
 /**
  * Returns [defaultValue] if this String is null
@@ -116,7 +121,7 @@ fun String.stringBuilder(): StringBuilder = StringBuilder(this)
  * Note: There is an existing String.capitalize(locale: Locale), but it is experimental, so we have
  * pulled in our own.
  *
- * Returns a copy of this string having its first letter titlecased preferring [Char.toTitleCase] (if different from
+ * Returns a copy of this string having its first letter title-cased preferring [Char.toTitleCase] (if different from
  * [Char.toUpperCase]) or by [String.toUpperCase] using the specified [locale], or the original string,
  * if it's empty or already starts with an upper case letter.
  *
@@ -124,21 +129,21 @@ fun String.stringBuilder(): StringBuilder = StringBuilder(this)
  * @return This String with its first character capitalized
  */
 fun String.capitalize(locale: Locale = Locale.getDefault()): String {
-	if (isNotEmpty()) {
-		val firstChar = this[0]
-		if (firstChar.isLowerCase()) {
-			return buildString {
-				val titleChar = firstChar.toTitleCase()
-				if (titleChar != firstChar.toUpperCase()) {
-					append(titleChar)
-				} else {
-					append(this@capitalize.substring(0, 1).toUpperCase(locale))
-				}
-				append(this@capitalize.substring(1))
-			}
-		}
-	}
-	return this
+    if (isNotEmpty()) {
+        val firstChar = this[0]
+        if (firstChar.isLowerCase()) {
+            return buildString {
+                val titleChar = firstChar.toTitleCase()
+                if (titleChar != firstChar.toUpperCase()) {
+                    append(titleChar)
+                } else {
+                    append(this@capitalize.substring(0, 1).toUpperCase(locale))
+                }
+                append(this@capitalize.substring(1))
+            }
+        }
+    }
+    return this
 }
 
 /**
@@ -147,15 +152,61 @@ fun String.capitalize(locale: Locale = Locale.getDefault()): String {
  * @return true if this String is a valid email, false otherwise
  */
 fun String?.isValidEmail(): Boolean =
-	if (this == null) false
-	else Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    if (this == null) false
+    else Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 /**
  * Parses this String as a Boolean
  *
- * @return true if this String equals 'y' or 'true', false otherwise (case is ignored)
+ * @return true if this String equals 'y', 'yes', or 'true', false otherwise (case is ignored)
  */
 fun String.parseAsBoolean(): Boolean =
 	this.trim().let {
-		it.equals("y", true) || it.equals("true", true)
+		it.equals("y", true) || it.equals("yes", true) || it.equals("true", true)
 	}
+
+
+/**
+ * Safe and simple way to convert a string into a Base64 encoded string. This function
+ * catches all exceptions and returns null if one is encountered.
+ *
+ * @param flags (defaults to Base64.DEFAULT) Controls certain features of the encoded output. Passing {@code DEFAULT} results in output that adheres to RFC 2045.
+ * @return The base64 encoded string or null if an exception occurred.
+ */
+fun String?.toBase64String(flags: Int = Base64.DEFAULT): String? =
+    try {
+        Base64.encodeToString(this?.toByteArray(), flags)
+    } catch (e: Exception) {
+        null
+    }
+
+/**
+ * Safe and simple way to decode a Base64 encoded string. This function catches all exceptions and
+ * returns null if one is encountered.
+ *
+ * @param flags (defaults to Base64.DEFAULT) Controls certain features of the encoded output. Passing {@code DEFAULT} results in output that adheres to RFC 2045.
+ * @return The decoded string or null if an exception occurred.
+ */
+fun String?.decodeBase64(flags: Int = Base64.DEFAULT): String? =
+    try {
+        String(Base64.decode(this, flags))
+    } catch (e: Exception) {
+        null
+    }
+
+/**
+ * Safe and simple way to convert a timezone string into a ZoneId. This function is capable of
+ * handling both long and short time zones and will catch all exceptions. If an exception is encountered, null
+ * is returned.
+ *
+ * @return The ZoneId for the given timezone or null if an exception occurred.
+ */
+fun String?.toZoneId(): ZoneId = this?.let {
+    try {
+        val timeZone = ZoneId.SHORT_IDS[it] ?: it
+
+        ZoneId.of(timeZone)
+    } catch (e: Exception) {
+        null
+    }
+} ?: ZoneId.systemDefault()

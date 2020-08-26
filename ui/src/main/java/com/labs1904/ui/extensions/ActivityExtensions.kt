@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
@@ -181,3 +182,10 @@ fun Activity.requestPermission(permissions: Array<String>, requestCode: Int) {
         requestCode
     )
 }
+
+/**
+ * Simple way of getting the view that was set as the content view of the Activity.
+ *
+ * @return The view that was set as the content view.
+ */
+fun Activity.getContentView(): View? = (findViewById(android.R.id.content) as? ViewGroup)?.getChildAt(0)

@@ -23,14 +23,17 @@ The `core` module contains extension functions for Kotlin data types, as well as
     - `DisposableUtilsKx` - Extension functions for RxJava's `Disposable` type
 - Various extension functions for built-in types:
     - `BooleanUtilsKx`
+    - `ByteArrayUtilsKx`
     - `CollectionUtilsKx`
     - `DateUtilsKx`
     - `DoubleUtilsKx`
     - `FloatUtilsKx`
+    - `LiveDataUtilsKx`
     - `NumberUtilsKx`
     - `StringUtilsKx`
+    - `ThrowableUtilsKx`
     - `UtilsKx`
-    - `LiveDataUtilsKx`
+    - `ZoneDateTimeUtilsKx`
 
 To include this module in your project, add the following dependency:
 ```
@@ -67,6 +70,8 @@ The `network` module contains two network interceptors relating to API authentic
     - `RoomCookieCache`: A [Dao](https://developer.android.com/reference/androidx/room/Dao) for the AndroidX Room library that stores persistent cookies in a SQLite database
 - `is401Unauthorized()`
     - Any easy way to check if a Throwable is a Retrofit HttpException with a 401 code.
+- `is400BadRequest()`
+    - Any easy way to check if a Throwable is a Retrofit HttpException with a 400 code.
     
 To include these components in your project, add the following dependency:
 ```
