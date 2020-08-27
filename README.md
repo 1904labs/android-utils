@@ -29,23 +29,26 @@ To set up:
 2) Subscribe to the ConnectivityNotifier in your base activity or whichever class you need this functionality. You can
 also set this up globally via an ApplicationLifecycleCallback, but this can get challenging depending on your use case.
 ```kotlin
-    disposables.add(
-        ConnectivityNotifier
-            .isConnected
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ isConnected ->
-                if (isConnected) {
-                    onConnected()
-                } else {
-                    onDisconnected()
-                }
-            }, {
-                Timber.e(
-                    it,
-                    "BaseActivity.ConnectivityNotifier.isConnected error"
-                )
-            })
-    )
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        disposables.add(
+            ConnectivityNotifier
+                .isConnected
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ isConnected ->
+                    if (isConnected) {
+                        onConnected()
+                    } else {
+                        onDisconnected()
+                    }
+                }, {
+                    Timber.e(
+                        it,
+                        "BaseActivity.ConnectivityNotifier.isConnected error"
+                    )
+                })
+        )
+    }
 
     private fun onConnected() {
         // Logic to be performed when the network is back online
