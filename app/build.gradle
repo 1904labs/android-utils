@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.labs1904.tracker"
-		minSdkVersion build_versions.app_min_sdk
+		minSdkVersion build_versions.min_sdk
 		targetSdkVersion build_versions.compile_sdk
 		multiDexEnabled true
         versionCode 1

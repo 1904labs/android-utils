@@ -1,3 +1,4 @@
+include ':connectivity-notifier'
 rootProject.name='android-utils'
 include ':app'
 include ':core'

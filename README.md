@@ -12,6 +12,71 @@ allprojects {
 }
 ```
 
+## Connectivity-Notifier [![](https://img.shields.io/badge/Jitpack-connectivity--notifier--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+The `connectivity-notifier` module allows asynchronous and synchronous network monitoring. It is easy to set up and allows you to globally
+react when the network state changes across wifi, cellular, and vpn. 
+
+To set up:
+
+1) Call registerConnectivityNetworkCallbacks() within onCreate() of your application.
+```kotlin
+    override fun onCreate() {
+        super.onCreate()
+        registerConnectivityNetworkCallbacks()
+    }
+```
+
+2) Subscribe to the ConnectivityNotifier in your base activity or whichever class you need this functionality. You can
+also set this up globally via an ApplicationLifecycleCallback, but this can get challenging depending on your use case.
+```kotlin
+    disposables.add(
+        ConnectivityNotifier
+            .isConnected
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ isConnected ->
+                if (isConnected) {
+                    onConnected()
+                } else {
+                    onDisconnected()
+                }
+            }, {
+                Timber.e(
+                    it,
+                    "BaseActivity.ConnectivityNotifier.isConnected error"
+                )
+            })
+    )
+
+    private fun onConnected() {
+        // Logic to be performed when the network is back online
+    }
+
+    private fun onDisconnected() {
+        // Logic to be performed when the network is lost. Typically showing a Snackbar/Toast or logging.
+    }
+```
+
+3) (optional) Depending on your use case, you may also want to update the UI in onResume() if the state is disconnected. The observable
+stream will trigger any future connectivity events, but if the network is lost prior to navigation, the new screen will not show that the
+network is disconnected. This library allows for a synchronous way of checking for network state as well which is what we will use here.
+```kotlin
+    override fun onResume() {
+        super.onResume()
+        if (!ConnectivityStateHolder.isConnected) {
+            onDisconnected()
+        }
+    }
+
+    private fun onDisconnected() {
+        // Logic to be performed when the network is lost. Typically showing a Snackbar/Toast or logging.
+    }
+```
+
+To include this module in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:connectivity-notifier:connectivity-notifier-1.0.0'
+```
+
 ## Core [![](https://img.shields.io/badge/Jitpack-core--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `core` module contains extension functions for Kotlin data types, as well as some helper classes around `LiveData`, AndroidX Navigation, and RxJava `Diposables`:
 - LiveData
