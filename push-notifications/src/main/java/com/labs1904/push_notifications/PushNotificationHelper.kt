@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.annotation.WorkerThread
 import androidx.room.Room
 import com.labs1904.push_notifications.data.NOTIFICATION_DB_FILE
 import com.labs1904.push_notifications.data.NotificationCache
@@ -39,6 +40,14 @@ abstract class PushNotificationHelper(private val app: Application) {
 
     abstract fun createNotificationChannel()
 
+    fun sendPushNotification(notificationId: Int, notification: Notification) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel()
+        }
+        notificationManager.notify(notificationId, notification)
+    }
+
+    @WorkerThread
     fun schedulePushNotifications(notifications: List<ScheduledNotification>) {
         notifications.forEach { scheduledNotification ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -58,6 +67,7 @@ abstract class PushNotificationHelper(private val app: Application) {
         notificationCache.insertNotifications(notifications)
     }
 
+    @WorkerThread
     fun cancelScheduledNotifications() {
         notificationCache.fetchNotifications().forEach { notification ->
             alarmManager.cancel(createAlarmManagerPendingIntent(notification))
@@ -65,16 +75,11 @@ abstract class PushNotificationHelper(private val app: Application) {
         notificationCache.clearNotifications()
     }
 
+    @WorkerThread
     fun hasAlreadyScheduledNotificationWithId(id: Int): Boolean =
         notificationCache.containsNotificationId(id)
 
-    fun sendPushNotification(notificationId: Int, notification: Notification) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel()
-        }
-        notificationManager.notify(notificationId, notification)
-    }
-
+    @WorkerThread
     internal fun rescheduleFutureNotifications() {
         notificationCache.fetchNotifications().filter {
             it.scheduledDateTimeMillis >= ZonedDateTime.now(it.scheduledTimeZone.toZoneId()).toEpochMillis()
