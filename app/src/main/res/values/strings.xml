@@ -28,5 +28,7 @@
     <string name="days">Days</string>
     <string name="enable_network_monitoring">Enable network monitoring</string>
     <string name="network_monitoring_setting_summary">Enables alerts when the network is lost.</string>
+    <string name="network_connection_lost">Network connection lost!</string>
+    <string name="network_connection_restored">Network connection restored!</string>
 
 </resources>

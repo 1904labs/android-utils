@@ -3,6 +3,7 @@ package com.labs1904.ui.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Rect
 import android.net.Uri
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NavUtils
+import androidx.preference.PreferenceManager
 import com.labs1904.ui.R
 import io.reactivex.rxjava3.core.Observable
 
@@ -189,3 +191,10 @@ fun Activity.requestPermission(permissions: Array<String>, requestCode: Int) {
  * @return The view that was set as the content view.
  */
 fun Activity.getContentView(): View? = (findViewById(android.R.id.content) as? ViewGroup)?.getChildAt(0)
+
+/**
+ * Simple way of getting the default SharedPreferences.
+ *
+ * @return The default SharedPreferences.
+ */
+fun Activity.getDefaultSharedPrefs(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
