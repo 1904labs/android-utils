@@ -30,5 +30,11 @@
     <string name="network_monitoring_setting_summary">Enables alerts when the network is lost.</string>
     <string name="network_connection_lost">Network connection lost!</string>
     <string name="network_connection_restored">Network connection restored!</string>
+    <string name="enable_notifications_key" translatable="false">enable_notifications</string>
+    <string name="enable_network_monitoring_key" translatable="false">enable_network_monitoring</string>
+    <string name="notification_days_key" translatable="false">notification_days</string>
+    <string name="notification_time_key" translatable="false">notification_time</string>
+    <string name="not_set">Not set</string>
+    <string name="every_day">Every day</string>
 
 </resources>

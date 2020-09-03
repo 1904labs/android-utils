@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private val networkLostSnackbar: Snackbar? by lazy { createNoConnectionSnackbar() }
     private val backOnlineToast: Toast? by lazy { createBackOnlineToast() }
     private val sharedPrefsListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-        if (NETWORK_MONITORING_ENABLED_SETTINGS_KEY == key) {
+        if (getString(R.string.enable_network_monitoring_key) == key) {
             checkForDisconnection()
             setUpNetworkMonitoring()
         }
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isNetworkMonitoringEnabled(): Boolean =
-        getDefaultSharedPrefs().getBoolean(NETWORK_MONITORING_ENABLED_SETTINGS_KEY, true)
+        getDefaultSharedPrefs().getBoolean(getString(R.string.enable_network_monitoring_key), true)
 
     private fun setUpNetworkMonitoring() {
         if (isNetworkMonitoringEnabled()) {

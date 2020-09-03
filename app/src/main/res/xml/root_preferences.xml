@@ -8,7 +8,7 @@
             app:allowDividerAbove="false"
             app:allowDividerBelow="true"
             app:iconSpaceReserved="false"
-            app:key="enable_notifications"
+            app:key="@string/enable_notifications_key"
             app:defaultValue="false"
             app:summary="@string/push_notification_setting_summary"
             app:title="@string/enable_push_notifications" />
@@ -16,21 +16,19 @@
         <com.labs1904.tracker.settings.TimePreference
             app:allowDividerAbove="true"
             app:allowDividerBelow="true"
-            app:dependency="enable_notifications"
+            app:dependency="@string/enable_notifications_key"
             app:iconSpaceReserved="false"
-            app:key="notification_time"
-            app:summary="12:00 AM"
+            app:key="@string/notification_time_key"
             app:title="@string/time" />
 
         <MultiSelectListPreference
             app:allowDividerAbove="true"
             app:allowDividerBelow="false"
-            app:dependency="enable_notifications"
-            app:entries="@array/days_of_week_entries"
-            app:entryValues="@array/days_of_week_values"
+            app:dependency="@string/enable_notifications_key"
+            app:entries="@array/days_of_week"
+            app:entryValues="@array/days_of_week"
             app:iconSpaceReserved="false"
-            app:key="notification_days"
-            app:summary="Mon, Tues, Wed, Thurs, Fri"
+            app:key="@string/notification_days_key"
             app:title="@string/days" />
 
     </PreferenceCategory>
@@ -42,7 +40,7 @@
         <SwitchPreferenceCompat
             app:defaultValue="true"
             app:iconSpaceReserved="false"
-            app:key="enable_network_monitoring"
+            app:key="@string/enable_network_monitoring_key"
             app:summary="@string/network_monitoring_setting_summary"
             app:title="@string/enable_network_monitoring" />
 

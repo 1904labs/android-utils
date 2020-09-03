@@ -1,5 +1,5 @@
 <resources>
-    <string-array name="days_of_week_entries">
+    <string-array name="days_of_week">
         <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
@@ -7,15 +7,5 @@
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-    </string-array>
-
-    <string-array name="days_of_week_values">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tues</item>
-        <item>Wed</item>
-        <item>Thurs</item>
-        <item>Fri</item>
-        <item>Sat</item>
     </string-array>
 </resources>
