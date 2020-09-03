@@ -61,6 +61,7 @@ dependencies {
 	implementation project(":ui")
 	implementation project(":core")
 	implementation project(":lint")
+	implementation 'androidx.preference:preference:1.1.1'
 
 	debugImplementation project(":test-utils")
 

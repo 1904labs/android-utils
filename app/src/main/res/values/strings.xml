@@ -10,13 +10,23 @@
     <string name="not_available">n/a</string>
     <string name="network_error">Network Error</string>
     <string name="failed_to_fetch_data">Failed to fetch data. Please try again later.</string>
-	<string name="nationwide_dashboard">Nationwide Dashboard</string>
-	<string name="total_test_results">Total test results</string>
-	<string name="deaths_home">Deaths</string>
-	<string name="recovered_home">Recovered</string>
-	<string name="testing">Testing</string>
-	<string name="outcomes">Outcomes</string>
-	<string name="positive_tests">Positive tests</string>
-	<string name="pending_tests">Pending tests</string>
-	<string name="negative_tests">Negative tests</string>
+    <string name="nationwide_dashboard">Nationwide Dashboard</string>
+    <string name="total_test_results">Total test results</string>
+    <string name="deaths_home">Deaths</string>
+    <string name="recovered_home">Recovered</string>
+    <string name="testing">Testing</string>
+    <string name="outcomes">Outcomes</string>
+    <string name="positive_tests">Positive tests</string>
+    <string name="pending_tests">Pending tests</string>
+    <string name="negative_tests">Negative tests</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="settings">Settings</string>
+    <string name="network_monitoring">Network Monitoring</string>
+    <string name="enable_push_notifications">Enable push notifications</string>
+    <string name="push_notification_setting_summary">Enables scheduled reminders to check out the latest Covid-19 data.</string>
+    <string name="time">Time</string>
+    <string name="days">Days</string>
+    <string name="enable_network_monitoring">Enable network monitoring</string>
+    <string name="network_monitoring_setting_summary">Enables alerts when the network is lost.</string>
+
 </resources>

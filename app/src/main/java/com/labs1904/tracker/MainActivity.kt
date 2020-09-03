@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.labs1904.tracker.home.HomeFragment
+import com.labs1904.tracker.settings.SettingsFragment
 import com.labs1904.tracker.state.StateDashboardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 			when (it.itemId) {
 				R.id.item_home -> selectFragment(BottomNavFragments.HOME)
 				R.id.item_state_dashboard -> selectFragment(BottomNavFragments.STATE_DASHBOARD)
+				R.id.item_settings -> selectFragment(BottomNavFragments.SETTINGS)
 				else -> false
 			}
 		}
@@ -49,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 		when (fragmentToCreate) {
 			BottomNavFragments.HOME -> HomeFragment.newInstance()
 			BottomNavFragments.STATE_DASHBOARD -> StateDashboardFragment.newInstance()
+			BottomNavFragments.SETTINGS -> SettingsFragment.newInstance()
 		}.also {
 			transaction.add(R.id.main_content, it, fragmentToCreate.name)
 		}
@@ -63,5 +66,6 @@ class MainActivity : AppCompatActivity() {
 
 enum class BottomNavFragments {
 	HOME,
-	STATE_DASHBOARD
+	STATE_DASHBOARD,
+	SETTINGS
 }
