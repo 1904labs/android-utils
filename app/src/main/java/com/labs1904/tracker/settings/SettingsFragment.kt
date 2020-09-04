@@ -8,13 +8,13 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.labs1904.tracker.R
 
-@Suppress("UNCHECKED_CAST")
 class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
@@ -35,7 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onDisplayPreferenceDialog(preference: Preference?) {
         if (preference is TimePreference) {
             TimePickerSettingsDialog.newInstance(preference.key).apply {
-                setTargetFragment(this@SettingsFragment, 0)
+                setTargetFragment(this@SettingsFragment, TIME_PICKER_REQUEST_CODE)
             }.show(parentFragmentManager, TimePickerSettingsDialog::class.java.simpleName)
         } else {
             super.onDisplayPreferenceDialog(preference)
@@ -44,14 +44,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun MultiSelectListPreference.setDayPreferenceSummary(values: Set<String>) {
         summary = when (values.size) {
-            0 -> getString(R.string.not_set)
-            7 -> getString(R.string.every_day)
+            NO_DAYS_OF_WEEK -> getString(R.string.not_set)
+            ALL_DAYS_OF_WEEK -> getString(R.string.every_day)
             else -> values.sortedBy { findIndexOfValue(it) }.joinToString(DAY_SEPARATOR) { it.substring(0..2) }
         }
     }
 
     companion object {
         private const val DAY_SEPARATOR = ", "
+        private const val TIME_PICKER_REQUEST_CODE = 0
+        private const val NO_DAYS_OF_WEEK = 0
+        private const val ALL_DAYS_OF_WEEK = 7
 
         fun newInstance() = SettingsFragment()
     }
