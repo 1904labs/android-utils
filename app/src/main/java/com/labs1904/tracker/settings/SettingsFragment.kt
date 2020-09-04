@@ -3,10 +3,15 @@ package com.labs1904.tracker.settings
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.preference.MultiSelectListPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.*
+import com.labs1904.core.safeLet
+import com.labs1904.push_notifications.PushNotificationHelperProvider
 import com.labs1904.tracker.R
+import com.labs1904.tracker.utils.PushNotificationHandler
+import com.labs1904.ui.extensions.getDefaultSharedPrefs
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -22,13 +27,32 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<MultiSelectListPreference>(getString(R.string.notification_days_key))?.apply {
-            onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValues ->
-                (newValues as? Set<String>)?.let {
-                    setDayPreferenceSummary(it)
+            onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+                (newValue as? Set<String>)?.let { days ->
+                    scheduleNotifications(areNotificationsEnabled(), days, getTime())
+                    setDayPreferenceSummary(days)
                     true
                 } ?: false
             }
             setDayPreferenceSummary(values)
+        }
+
+        findPreference<DialogPreference>(getString(R.string.notification_time_key))?.apply {
+            onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+                (newValue as? String)?.let { time ->
+                    scheduleNotifications(areNotificationsEnabled(), getDays(), time)
+                    true
+                } ?: false
+            }
+        }
+
+        findPreference<SwitchPreferenceCompat>(getString(R.string.enable_notifications_key))?.apply {
+            onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+                (newValue as? Boolean)?.let { enabled ->
+                    scheduleNotifications(enabled, getDays(), getTime())
+                    true
+                } ?: false
+            }
         }
     }
 
@@ -46,9 +70,34 @@ class SettingsFragment : PreferenceFragmentCompat() {
         summary = when (values.size) {
             NO_DAYS_OF_WEEK -> getString(R.string.not_set)
             ALL_DAYS_OF_WEEK -> getString(R.string.every_day)
-            else -> values.sortedBy { findIndexOfValue(it) }.joinToString(DAY_SEPARATOR) { it.substring(0..2) }
+            else -> values.sortedBy { findIndexOfValue(it) }
+                .joinToString(DAY_SEPARATOR) { it.substring(0..2) }
         }
     }
+
+    private fun scheduleNotifications(isEnabled: Boolean, days: Set<String>?, time: String?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            getPushNotificationHelper()?.let { helper ->
+                if (isEnabled) {
+                    safeLet(time, days) { t, d ->
+                        helper.cancelScheduledNotifications()
+                        helper.scheduleWithTimeAndDays(d.toList(), t)
+                    }
+                } else {
+                    helper.cancelScheduledNotifications()
+                }
+            }
+        }
+    }
+
+    private fun areNotificationsEnabled(): Boolean = activity?.getDefaultSharedPrefs()?.getBoolean(getString(R.string.enable_notifications_key), false) ?: false
+
+    private fun getDays(): Set<String>? = activity?.getDefaultSharedPrefs()?.getStringSet(getString(R.string.notification_days_key), null)
+
+    private fun getTime(): String? = activity?.getDefaultSharedPrefs()?.getString(getString(R.string.notification_time_key), null)
+
+    private fun getPushNotificationHelper(): PushNotificationHandler? =
+        (activity?.application as? PushNotificationHelperProvider)?.get() as? PushNotificationHandler
 
     companion object {
         private const val DAY_SEPARATOR = ", "

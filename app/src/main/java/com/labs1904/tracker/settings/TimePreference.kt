@@ -35,6 +35,6 @@ class TimePreference(context: Context?, attrs: AttributeSet?) : DialogPreference
 
     companion object {
         private const val DEFAULT_VALUE = "12:00 AM"
-        private const val TWELVE_HOUR_TIME_FORMAT = "h:mm a"
+        const val TWELVE_HOUR_TIME_FORMAT = "h:mm a"
     }
 }

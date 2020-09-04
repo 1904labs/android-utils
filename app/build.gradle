@@ -63,6 +63,7 @@ dependencies {
 	implementation project(":core")
 	implementation project(":lint")
 	implementation project(":connectivity-notifier")
+	implementation project(":push-notifications")
 
 	coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$versions.desugar_jdk"
 

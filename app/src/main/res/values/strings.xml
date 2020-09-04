@@ -1,4 +1,6 @@
 <resources>
+    <string name="default_notification_channel_id">com.labs1904.tracker.notification</string>
+    <string name="default_notification_channel_name">C19 Dash Notification</string>
     <string name="app_name">C19 Dash</string>
     <string name="home">Home</string>
     <string name="state_dashboard">State Dashboard</string>
@@ -36,5 +38,7 @@
     <string name="notification_time_key" translatable="false">notification_time</string>
     <string name="not_set">Not set</string>
     <string name="every_day">Every day</string>
+    <string name="push_notification_title">Scheduled Reminder</string>
+    <string name="push_notification_body">Check out the latest Covid-19 data!</string>
 
 </resources>

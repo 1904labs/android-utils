@@ -14,12 +14,12 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 interface PushNotificationHelperProvider {
-    fun get(): PushNotificationHelper
+    fun get(): PushNotificationHelper?
 }
 
 abstract class PushNotificationHelper(private val app: Application) {
 
-    private val notificationManager
+    val notificationManager
         get() = app.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     private val alarmManager
@@ -41,9 +41,7 @@ abstract class PushNotificationHelper(private val app: Application) {
     abstract fun createNotificationChannel()
 
     fun sendPushNotification(notificationId: Int, notification: Notification) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel()
-        }
+        createNotificationChannel()
         notificationManager.notify(notificationId, notification)
     }
 
