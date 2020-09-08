@@ -67,16 +67,29 @@ fun View?.findOutermostViewGroup(): ViewGroup? {
     return fallback
 }
 
+/**
+ * Generates a Bitmap of this View
+ */
 fun View.bitmap(): Bitmap =
 	Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).also {
 		draw(Canvas(it))
 	}
 
+/**
+ * Shows this View using an AlphaAnimation (startAlpha = 0, endAlpha = 1)
+ *
+ * @param animDuration The duration of the AlphaAnimation
+ */
 fun View.fadeIn(animDuration: Long) {
 	visible()
 	startAnimation(AlphaAnimation(0f, 1f).apply { duration = animDuration })
 }
 
+/**
+ * Hides this View using an AlphaAnimation (startAlpha = 1, endAlpha = 0)
+ *
+ * @param animDuration The duration of the AlphaAnimation
+ */
 fun View.fadeOut(animDuration: Long) {
 	gone()
 	startAnimation(AlphaAnimation(1f, 0f).apply { duration = animDuration })
