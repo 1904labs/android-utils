@@ -20,6 +20,10 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
 
+	kotlinOptions {
+		jvmTarget = build_versions.jvm_target
+	}
+
 	buildFeatures {
 		dataBinding = true
 	}
@@ -31,6 +35,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
     implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$versions.androidx_lifecycle"
+	implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx_lifecycle"
 
     implementation "com.google.android.material:material:$versions.material"
 

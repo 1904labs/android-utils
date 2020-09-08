@@ -12,3 +12,13 @@ import androidx.databinding.BindingAdapter
 fun View.setVisible(isVisible: Boolean) {
     this.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
+
+/**
+ * Binding adapter that binds a boolean to a View's isSelected property
+ *
+ * @param isSelected The value to bind to the View's isSelected property
+ */
+@BindingAdapter("isSelected")
+fun setSelected(view: View, isSelected: Boolean) {
+	view.isSelected = isSelected
+}

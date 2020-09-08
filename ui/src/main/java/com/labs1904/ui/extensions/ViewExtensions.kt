@@ -1,7 +1,10 @@
 package com.labs1904.ui.extensions
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.FrameLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 
@@ -62,4 +65,32 @@ fun View?.findOutermostViewGroup(): ViewGroup? {
     } while (currentView != null)
 
     return fallback
+}
+
+/**
+ * Generates a Bitmap of this View
+ */
+fun View.bitmap(): Bitmap =
+	Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).also {
+		draw(Canvas(it))
+	}
+
+/**
+ * Shows this View using an AlphaAnimation (startAlpha = 0, endAlpha = 1)
+ *
+ * @param animDuration The duration of the AlphaAnimation
+ */
+fun View.fadeIn(animDuration: Long) {
+	visible()
+	startAnimation(AlphaAnimation(0f, 1f).apply { duration = animDuration })
+}
+
+/**
+ * Hides this View using an AlphaAnimation (startAlpha = 1, endAlpha = 0)
+ *
+ * @param animDuration The duration of the AlphaAnimation
+ */
+fun View.fadeOut(animDuration: Long) {
+	gone()
+	startAnimation(AlphaAnimation(1f, 0f).apply { duration = animDuration })
 }
