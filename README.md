@@ -14,7 +14,7 @@ allprojects {
 
 ## Connectivity-Notifier [![](https://img.shields.io/badge/Jitpack-connectivity--notifier--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `connectivity-notifier` module allows asynchronous and synchronous network monitoring. It is easy to set up and allows you to globally
-react when the network state changes across wifi, cellular, and vpn. 
+react when the network state changes across wifi, cellular, and vpn.
 
 To set up:
 
@@ -140,7 +140,7 @@ The `network` module contains two network interceptors relating to API authentic
     - Any easy way to check if a Throwable is a Retrofit HttpException with a 401 code.
 - `is400BadRequest()`
     - Any easy way to check if a Throwable is a Retrofit HttpException with a 400 code.
-    
+
 To include these components in your project, add the following dependency:
 ```
 implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
@@ -183,6 +183,7 @@ The `ui` module contains the following:
     - ```ImageView.showNetworkImage()``` - Bind to a URL to be able to load images into the ImageView
     via Glide. This custom adapter also allows you to specify a placeholder and an error Drawable.
     - ```View.setVisible()``` - Bind to a boolean to be able to set the visibility of the view.
+    - `setSelected()` - Binds a boolean to a View's `isSelected` property
 - Various extension functions for the following:
     - Context
     - Activity
@@ -204,6 +205,7 @@ The `ui` module contains the following:
     place in the center one by one. This is typically used for a gallery/carousel type implementation.
     - ```ViewModelFactoryUtil``` - This utility function cuts down on some of the boilerplate code
     around creating a ViewModelProvider factory.
+    - `BlurExtensions` - Contains helper functions for blurring `ViewGroups`
 - Reusable Views
     - ```BaseFragment``` - A headless view class that is an extension of Fragment with a few helpers
     tacked on. This class makes setting up a toolbar, getting a reference to an AppCompatActivity,
