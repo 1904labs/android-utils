@@ -5,6 +5,10 @@ import androidx.room.*
 const val NOTIFICATION_DB_FILE = "notification.db"
 const val NOTIFICATION_TABLE = "notifications"
 
+/**
+ * A NotificationDatabase implemented using Room. This is used to store and retrieve all of the
+ * locally scheduled push notifications.
+ */
 @Database(
     entities = [NotificationEntity::class],
     version = 1
@@ -13,6 +17,9 @@ internal abstract class NotificationDatabase : RoomDatabase() {
     abstract fun notificationDao(): NotificationDao
 }
 
+/**
+ * Doa for the NotificationDatabase. This tells Room how to handle each function call.
+ */
 @Dao
 internal interface NotificationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

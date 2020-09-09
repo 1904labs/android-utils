@@ -8,6 +8,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * A BroadcastReceiver that will send out the notifications at the scheduled time. This will
+ * also listen for device reboots and reschedule any future notifications since AlarmManager intents
+ * do not survive device reboots.
+ *
+ * In order for this to work properly, there needs to be a proper implementation
+ * of PushNotificationHelper as well as an application that implements the PushNotificationHelperProvider interface.
+ * Since BroadcastReceivers cannot have any constructors, this interface is used to get an instance of the PushNotificationHelper.
+ */
 class ScheduledNotificationReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
