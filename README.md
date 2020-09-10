@@ -146,6 +146,55 @@ To include these components in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
 ```
 
+## Push-Notifications [![](https://img.shields.io/badge/Jitpack-push--notifications--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+The `push-notifications` module allows you to locally schedule push notifications. The implementation used keeps all of your push notification logic 
+in one place and also survives device reboots.
+
+To set up:
+
+1) Create a class that extends PushNotificationHelper and implement ```createPushNotification``` and ```createNotificationChannel```.
+```kotlin
+class PushNotificationHandler(private val app: Application) : PushNotificationHelper(app) {
+
+    override fun createPushNotification(
+        title: String,
+        body: String,
+        intentData: Map<String, String>?
+    ): Notification {
+        // Your logic here
+    }
+
+    override fun createNotificationChannel() {
+        // Your logic here
+    }
+}
+```
+
+2) On your Application, implement ```PushNotificationHelperProvider```. You will most likely want to implement this
+using lazy loading as well as in a Singleton manner. Below we are initializing the helper the first time it is accessed and then
+returning that single instance with any future calls to get().
+```kotlin
+class CovidApplication : MultiDexApplication(), PushNotificationHelperProvider {
+
+    private var pushNotificationHelper: PushNotificationHandler? = null
+
+    override fun get(): PushNotificationHelper? {
+		if (pushNotificationHelper == null) {
+			pushNotificationHelper = PushNotificationHandler(this)
+		}
+		return pushNotificationHelper
+	}
+}
+```
+
+3) Create a list of ScheduledNotifications and call ```pushNotificationHelper.schedulePushNotifications(notifications)```.
+This will handle scheduling the notifications using AlarmManager. These scheduled notifications will also survive device reboots.
+
+To include this module in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:push-notifications:push-notifications-1.0.0'
+```
+
 ## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
 The `test-utils` module contains the following to help make testing quicker and more standardized:
 - Utils to generate random non-null primitive data types:

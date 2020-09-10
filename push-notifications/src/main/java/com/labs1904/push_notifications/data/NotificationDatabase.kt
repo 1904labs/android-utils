@@ -2,7 +2,14 @@ package com.labs1904.push_notifications.data
 
 import androidx.room.*
 
+/**
+ * Notification database file name
+ */
 const val NOTIFICATION_DB_FILE = "notification.db"
+
+/**
+ * Notification table name
+ */
 const val NOTIFICATION_TABLE = "notifications"
 
 /**

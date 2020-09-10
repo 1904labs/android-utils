@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `NotificationEntity` - Entity for the Notification that is stored via Room. This data class also handles 
 serialization and deserialization.
 - `NotificationConstants` - Some intent key constants
-- `PushNotificationHelper` - Abstraction layer over the cache that ensures the AlarmManager intents are being built the exact same way.
+- `PushNotificationHelper` - Abstraction layer over the cache that ensures the AlarmManager intents are always built the exact same way.
 This also gives us a way to work with the cache via an interface defined on the application.
 - `ScheduledNotificationReceiver` - A BroadcastReceiver that will send out the notifications at the scheduled time. This will
 also listen for device reboots and reschedule any future notifications since AlarmManager intents do not survive device reboots.
