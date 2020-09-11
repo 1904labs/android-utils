@@ -52,6 +52,8 @@ fun ViewGroup.blur(
 			)
 		}
 
+		removeBlur()
+
 		val imageView = AppCompatImageView(context).apply {
 			tag = BLUR_VIEW_TAG
 			layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
