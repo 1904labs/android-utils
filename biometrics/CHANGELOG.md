@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `BaseBiometricsHelper`
     - Base class that creates ciphers, keys, and IVs, and also handles encryption, decryption, storage, and retrieval of the data. This class
     also has basic logging and error handling as well as some helper functions to help keep the UI logic clean and readable.
-- `CredentialBioHelper`
+- `CredentialBiometricsHelper`
     - Implementation of ```BaseBiometricHelper``` that works with a username and password.
-- `TokenBioHelper`
+- `TokenBiometricsHelper`
     - Implementation of ```BaseBiometricHelper``` that works with a string based token.

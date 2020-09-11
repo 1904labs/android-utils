@@ -24,4 +24,5 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
     implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "androidx.biometric:biometric:$versions.androidx_biometrics"
 }
