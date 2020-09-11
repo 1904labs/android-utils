@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
  * also listen for device reboots and reschedule any future notifications since AlarmManager intents
  * do not survive device reboots.
  *
- * In order for this to work properly, there needs to be a proper implementation of [PushNotificationHelper]
+ * In order for this to work properly, there needs to be a proper implementation of [BasePushNotificationHelper]
  * as well as an application that implements the [PushNotificationHelperProvider] interface.
- * Since BroadcastReceivers cannot have any constructors with parameters, this interface is used to get an instance of the [PushNotificationHelper].
+ * Since BroadcastReceivers cannot have any constructors with parameters, this interface is used to get an instance of the [BasePushNotificationHelper].
  */
 class ScheduledNotificationReceiver : BroadcastReceiver() {
 

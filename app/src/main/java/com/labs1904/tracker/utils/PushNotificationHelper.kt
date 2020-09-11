@@ -6,7 +6,7 @@ import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.labs1904.core.toEpochMillis
-import com.labs1904.push_notifications.PushNotificationHelper
+import com.labs1904.push_notifications.BasePushNotificationHelper
 import com.labs1904.push_notifications.ScheduledNotification
 import com.labs1904.tracker.R
 import com.labs1904.tracker.SplashActivity
@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.random.Random
 
-class PushNotificationHandler(private val app: Application) : PushNotificationHelper(app) {
+class PushNotificationHelper(private val app: Application) : BasePushNotificationHelper(app) {
 
     override fun createPushNotification(
         title: String,

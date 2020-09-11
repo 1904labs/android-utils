@@ -15,11 +15,11 @@ import java.time.ZonedDateTime
 
 /**
  * This interface is the mechanism for which our [ScheduledNotificationReceiver] will obtain an instance
- * of our [PushNotificationHelper]. Since BroadcastReceivers are unable to take in arguments within a constructor,
+ * of our [BasePushNotificationHelper]. Since BroadcastReceivers are unable to take in arguments within a constructor,
  * we need this interface to be implemented on the Application.
  */
 interface PushNotificationHelperProvider {
-    fun get(): PushNotificationHelper?
+    fun get(): BasePushNotificationHelper?
 }
 
 /**
@@ -27,7 +27,7 @@ interface PushNotificationHelperProvider {
  * This in combination with [PushNotificationHelperProvider] gives us a way to interface with the cache within
  * the [ScheduledNotificationReceiver].
  */
-abstract class PushNotificationHelper(private val app: Application) {
+abstract class BasePushNotificationHelper(private val app: Application) {
 
     /**
      * Convenience get() function to obtain the NotificationManager

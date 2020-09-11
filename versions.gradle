@@ -38,5 +38,6 @@ build_versions.compile_sdk = 29
 build_versions.gradle_plugin = '4.0.1'
 build_versions.jvm_target = '1.8'
 build_versions.min_sdk = 21
+build_versions.min_sdk_biometrics = 23
 build_versions.target_sdk = 29
 ext.build_versions = build_versions

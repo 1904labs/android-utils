@@ -7,7 +7,7 @@ import androidx.preference.*
 import com.labs1904.core.safeLet
 import com.labs1904.push_notifications.PushNotificationHelperProvider
 import com.labs1904.tracker.R
-import com.labs1904.tracker.utils.PushNotificationHandler
+import com.labs1904.tracker.utils.PushNotificationHelper
 import com.labs1904.ui.extensions.getDefaultSharedPrefs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -96,8 +96,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun getTime(): String? = activity?.getDefaultSharedPrefs()?.getString(getString(R.string.notification_time_key), null)
 
-    private fun getPushNotificationHelper(): PushNotificationHandler? =
-        (activity?.application as? PushNotificationHelperProvider)?.get() as? PushNotificationHandler
+    private fun getPushNotificationHelper(): PushNotificationHelper? =
+        (activity?.application as? PushNotificationHelperProvider)?.get() as? PushNotificationHelper
 
     companion object {
         private const val DAY_SEPARATOR = ", "

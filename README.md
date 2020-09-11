@@ -152,9 +152,9 @@ in one place and also survives device reboots.
 
 To set up:
 
-1) Create a class that extends PushNotificationHelper and implement ```createPushNotification``` and ```createNotificationChannel```.
+1) Create a class that extends ```BasePushNotificationHelper``` and implement ```createPushNotification``` and ```createNotificationChannel```.
 ```kotlin
-class PushNotificationHandler(private val app: Application) : PushNotificationHelper(app) {
+class PushNotificationHelper(private val app: Application) : BasePushNotificationHelper(app) {
 
     override fun createPushNotification(
         title: String,
@@ -176,11 +176,11 @@ returning that single instance with any future calls to get().
 ```kotlin
 class CovidApplication : MultiDexApplication(), PushNotificationHelperProvider {
 
-    private var pushNotificationHelper: PushNotificationHandler? = null
+    private var pushNotificationHelper: PushNotificationHelper? = null
 
     override fun get(): PushNotificationHelper? {
 		if (pushNotificationHelper == null) {
-			pushNotificationHelper = PushNotificationHandler(this)
+			pushNotificationHelper = PushNotificationHelper(this)
 		}
 		return pushNotificationHelper
 	}

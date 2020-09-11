@@ -7,7 +7,7 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        minSdkVersion build_versions.min_sdk
+        minSdkVersion build_versions.min_sdk_biometrics
         targetSdkVersion build_versions.compile_sdk
 
         consumerProguardFiles 'consumer-rules.pro'
@@ -24,6 +24,4 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
     implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
-
-    implementation "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 }
