@@ -64,8 +64,8 @@ fun ViewGroup.blur(
 			viewGroup.addView(imageView)
 
 			if (animDuration > 0) imageView.fadeIn(animDuration)
-		} catch (cancellationException: CancellationException) {
-			removeBlur()
+		} finally {
+		    if (!isActive) removeBlur()
 		}
 	}
 }
