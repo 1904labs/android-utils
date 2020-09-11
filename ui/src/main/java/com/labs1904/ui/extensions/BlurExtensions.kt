@@ -9,6 +9,7 @@ import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -41,6 +42,7 @@ fun ViewGroup.blur(
 ): Job {
 	return coroutineScope.launch {
 		try {
+			Log.d("HELLO", "HELLO start coroutine")
 			val viewGroup = this@blur
 			val drawable = viewGroup.bitmap().blur(context, blurRadius).toDrawable(resources)
 
@@ -51,6 +53,7 @@ fun ViewGroup.blur(
 				)
 			}
 
+			Log.d("HELLO", "HELLO remove existing blur")
 			removeBlur()
 
 			val imageView = AppCompatImageView(context).apply {
@@ -61,10 +64,13 @@ fun ViewGroup.blur(
 				setOnClickListener(blurClickListener)
 			}
 
+			Log.d("HELLO", "HELLO add new blur")
 			viewGroup.addView(imageView)
 
 			if (animDuration > 0) imageView.fadeIn(animDuration)
+			Log.d("HELLO", "HELLO after fadein")
 		} finally {
+			Log.d("HELLO", "HELLO finally $isActive")
 		    if (!isActive) removeBlur()
 		}
 	}
