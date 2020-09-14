@@ -17,9 +17,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.LifecycleCoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 private const val DEFAULT_BLUR_RADIUS = 25f
 private const val BLUR_VIEW_TAG = "BLUR_VIEW_TAG"
@@ -40,31 +38,35 @@ fun ViewGroup.blur(
 	animDuration: Long = 0,
 	blurRadius: Float = DEFAULT_BLUR_RADIUS,
 	blurClickListener: View.OnClickListener? = null
-) {
-	coroutineScope.launch {
-		val viewGroup = this@blur
-		val drawable = viewGroup.bitmap().blur(context, blurRadius).toDrawable(resources)
+): Job {
+	return coroutineScope.launch {
+		try {
+			val viewGroup = this@blur
+			val drawable = viewGroup.bitmap().blur(context, blurRadius).toDrawable(resources)
 
-		blurColor?.let {
-			drawable.colorFilter = PorterDuffColorFilter(
-				ContextCompat.getColor(context, it),
-				PorterDuff.Mode.SRC_OVER
-			)
+			blurColor?.let {
+				drawable.colorFilter = PorterDuffColorFilter(
+					ContextCompat.getColor(context, it),
+					PorterDuff.Mode.SRC_OVER
+				)
+			}
+
+			removeBlur()
+
+			val imageView = AppCompatImageView(context).apply {
+				tag = BLUR_VIEW_TAG
+				layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+				setBackgroundColor(Color.WHITE)
+				setImageDrawable(drawable)
+				setOnClickListener(blurClickListener)
+			}
+
+			viewGroup.addView(imageView)
+
+			if (animDuration > 0) imageView.fadeIn(animDuration)
+		} finally {
+		    if (!isActive) removeBlur()
 		}
-
-		removeBlur()
-
-		val imageView = AppCompatImageView(context).apply {
-			tag = BLUR_VIEW_TAG
-			layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-			setBackgroundColor(Color.WHITE)
-			setImageDrawable(drawable)
-			setOnClickListener(blurClickListener)
-		}
-
-		viewGroup.addView(imageView)
-
-		if (animDuration > 0) imageView.fadeIn(animDuration)
 	}
 }
 
