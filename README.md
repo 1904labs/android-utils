@@ -12,7 +12,22 @@ allprojects {
 }
 ```
 
-## Connectivity-Notifier [![](https://img.shields.io/badge/Jitpack-connectivity--notifier--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Biometrics [![](https://img.shields.io/badge/Jitpack-biometrics--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-23+-brightgreen?logo=Android)
+The `biometrics` module contains:
+- `BaseBiometricsHelper`
+    - Base class that creates ciphers, keys, and IVs, and also handles encryption, decryption, storage, and retrieval of the data. This class
+    also has basic logging and error handling as well as some helper functions to help keep the UI logic clean and readable.
+- `CredentialBiometricsHelper`
+    - Implementation of ```BaseBiometricHelper``` that works with a username and password.
+- `TokenBiometricsHelper`
+    - Implementation of ```BaseBiometricHelper``` that works with a string based token.
+    
+To include these components in your project, add the following dependency:
+```
+implementation 'com.github.1904labs.android-utils:biometrics:biometrics-1.0.0'
+```
+
+## Connectivity-Notifier [![](https://img.shields.io/badge/Jitpack-connectivity--notifier--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `connectivity-notifier` module allows asynchronous and synchronous network monitoring. It is easy to set up and allows you to globally
 react when the network state changes across wifi, cellular, and vpn. 
 
@@ -80,7 +95,7 @@ To include this module in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:connectivity-notifier:connectivity-notifier-1.0.0'
 ```
 
-## Core [![](https://img.shields.io/badge/Jitpack-core--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Core [![](https://img.shields.io/badge/Jitpack-core--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `core` module contains extension functions for Kotlin data types, as well as some helper classes around `LiveData`, AndroidX Navigation, and RxJava `Diposables`:
 - LiveData
     - `KotlinLiveData` - A `LiveData` class that enforces Kotlin's nullable types
@@ -108,7 +123,7 @@ To include this module in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:core:core-1.0.0'
 ```
 
-## Lint [![](https://img.shields.io/badge/Jitpack-lint--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Lint [![](https://img.shields.io/badge/Jitpack-lint--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `lint` module contains a few custom lint checks:
 - `CompositeDisposableClearDetector`
     - A `CompositeDisposable` reference is being held, but it is not being cleared.
@@ -126,7 +141,7 @@ To include these lint checks in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:lint:lint-1.0.0'
 ```
 
-## Network [![](https://img.shields.io/badge/Jitpack-network--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Network [![](https://img.shields.io/badge/Jitpack-network--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `network` module contains two network interceptors relating to API authentication, as well as a [RFC-6265](https://tools.ietf.org/html/rfc6265#section-5.3) compliant cookie implementation:
 - `AuthInterceptor`
   - An OkHttp [Interceptor](https://square.github.io/okhttp/3.x/okhttp/okhttp3/Interceptor.html) that retrieves an authentication token using `TokenDataSource.currentTokens()`, and attaches it to outgoing requests using the `Authorization` header.
@@ -146,7 +161,7 @@ To include these components in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:network:network-1.0.0'
 ```
 
-## Push-Notifications [![](https://img.shields.io/badge/Jitpack-push--notifications--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Push-Notifications [![](https://img.shields.io/badge/Jitpack-push--notifications--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `push-notifications` module allows you to locally schedule push notifications. The implementation used keeps all of your push notification logic 
 in one place and also survives device reboots.
 
@@ -170,7 +185,7 @@ class PushNotificationHelper(private val app: Application) : BasePushNotificatio
 }
 ```
 
-2) On your Application, implement ```PushNotificationHelperProvider```. You will most likely want to implement this
+2) Within your Application, implement ```PushNotificationHelperProvider```. You will most likely want to implement this
 using lazy loading as well as in a Singleton manner. Below we are initializing the helper the first time it is accessed and then
 returning that single instance with any future calls to get().
 ```kotlin
@@ -195,7 +210,7 @@ To include this module in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:push-notifications:push-notifications-1.0.0'
 ```
 
-## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## Test-Utils [![](https://img.shields.io/badge/Jitpack-test--utils--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `test-utils` module contains the following to help make testing quicker and more standardized:
 - Utils to generate random non-null primitive data types:
     - ```randomInt()``` - Generates a random integer and allows you to specify a range. Default range is any positive integer.
@@ -226,7 +241,7 @@ To use this module in your project, add the following dependency:
 implementation 'com.github.1904labs.android-utils:test-utils:test-utils-1.0.0'
 ```
 
-## UI [![](https://img.shields.io/badge/Jitpack-ui--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils)
+## UI [![](https://img.shields.io/badge/Jitpack-ui--1.0.0-brightgreen)](https://jitpack.io/#1904labs/android-utils) ![](https://img.shields.io/badge/API-21+-brightgreen?logo=Android)
 The `ui` module contains the following:
 - Custom BindingAdapters:
     - ```ImageView.showNetworkImage()``` - Bind to a URL to be able to load images into the ImageView
