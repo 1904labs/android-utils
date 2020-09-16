@@ -1,4 +1,6 @@
 <resources>
+    <string name="default_notification_channel_id">com.labs1904.tracker.notification</string>
+    <string name="default_notification_channel_name">C19 Dash Notification</string>
     <string name="app_name">C19 Dash</string>
     <string name="home">Home</string>
     <string name="state_dashboard">State Dashboard</string>
@@ -10,13 +12,33 @@
     <string name="not_available">n/a</string>
     <string name="network_error">Network Error</string>
     <string name="failed_to_fetch_data">Failed to fetch data. Please try again later.</string>
-	<string name="nationwide_dashboard">Nationwide Dashboard</string>
-	<string name="total_test_results">Total test results</string>
-	<string name="deaths_home">Deaths</string>
-	<string name="recovered_home">Recovered</string>
-	<string name="testing">Testing</string>
-	<string name="outcomes">Outcomes</string>
-	<string name="positive_tests">Positive tests</string>
-	<string name="pending_tests">Pending tests</string>
-	<string name="negative_tests">Negative tests</string>
+    <string name="nationwide_dashboard">Nationwide Dashboard</string>
+    <string name="total_test_results">Total test results</string>
+    <string name="deaths_home">Deaths</string>
+    <string name="recovered_home">Recovered</string>
+    <string name="testing">Testing</string>
+    <string name="outcomes">Outcomes</string>
+    <string name="positive_tests">Positive tests</string>
+    <string name="pending_tests">Pending tests</string>
+    <string name="negative_tests">Negative tests</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="settings">Settings</string>
+    <string name="network_monitoring">Network Monitoring</string>
+    <string name="enable_push_notifications">Enable push notifications</string>
+    <string name="push_notification_setting_summary">Enables scheduled reminders to check out the latest Covid-19 data.</string>
+    <string name="time">Time</string>
+    <string name="days">Days</string>
+    <string name="enable_network_monitoring">Enable network monitoring</string>
+    <string name="network_monitoring_setting_summary">Enables alerts when the network is lost.</string>
+    <string name="network_connection_lost">Network connection lost!</string>
+    <string name="network_connection_restored">Network connection restored!</string>
+    <string name="enable_notifications_key" translatable="false">enable_notifications</string>
+    <string name="enable_network_monitoring_key" translatable="false">enable_network_monitoring</string>
+    <string name="notification_days_key" translatable="false">notification_days</string>
+    <string name="notification_time_key" translatable="false">notification_time</string>
+    <string name="not_set">Not set</string>
+    <string name="every_day">Every day</string>
+    <string name="push_notification_title">Scheduled Reminder</string>
+    <string name="push_notification_body">Check out the latest Covid-19 data!</string>
+
 </resources>

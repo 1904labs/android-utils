@@ -15,4 +15,5 @@
 	<dimen name="home_card_elevation">4dp</dimen>
 	<dimen name="home_title_text_size">16sp</dimen>
 	<dimen name="home_value_text_size">22sp</dimen>
+    <dimen name="toast_icon_size">32dp</dimen>
 </resources>

@@ -10,4 +10,6 @@
 
     <color name="primaryTextColor">#333333</color>
 
+    <color name="toastTextColor">#555555</color>
+
 </resources>

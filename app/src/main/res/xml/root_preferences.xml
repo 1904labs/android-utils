@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/push_notifications">
+
+        <SwitchPreferenceCompat
+            app:allowDividerAbove="false"
+            app:allowDividerBelow="true"
+            app:iconSpaceReserved="false"
+            app:key="@string/enable_notifications_key"
+            app:defaultValue="false"
+            app:summary="@string/push_notification_setting_summary"
+            app:title="@string/enable_push_notifications" />
+
+        <com.labs1904.tracker.settings.TimePreference
+            app:allowDividerAbove="true"
+            app:allowDividerBelow="true"
+            app:dependency="@string/enable_notifications_key"
+            app:iconSpaceReserved="false"
+            app:key="@string/notification_time_key"
+            app:title="@string/time" />
+
+        <MultiSelectListPreference
+            app:allowDividerAbove="true"
+            app:allowDividerBelow="false"
+            app:dependency="@string/enable_notifications_key"
+            app:entries="@array/days_of_week"
+            app:entryValues="@array/days_of_week"
+            app:iconSpaceReserved="false"
+            app:key="@string/notification_days_key"
+            app:title="@string/days" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/network_monitoring">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="@string/enable_network_monitoring_key"
+            app:summary="@string/network_monitoring_setting_summary"
+            app:title="@string/enable_network_monitoring" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

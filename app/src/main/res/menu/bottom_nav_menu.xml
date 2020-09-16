@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_chart_inactive"
         android:title="@string/state_dashboard" />
 
+    <item
+        android:id="@+id/item_settings"
+        android:icon="@drawable/ic_settings_inactive"
+        android:title="@string/settings" />
+
 </menu>

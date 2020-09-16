@@ -1,3 +1,5 @@
+include ':biometrics'
+include ':push-notifications'
 include ':connectivity-notifier'
 rootProject.name='android-utils'
 include ':app'
